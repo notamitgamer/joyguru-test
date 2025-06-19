@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connection Interrupted</title>
+    <!-- Favicon using SVG for a clean look -->
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23607D8B' d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z'/%3E%3C/svg>" type="image/svg+xml">
+    <!-- Load Tailwind CSS for utility classes (ensure this is still needed or remove if not used for styling this page) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Import Inter font from Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+        /* Define CSS variables for consistent theming */
+        :root {
+            --primary-text-color: #333;
+            --secondary-text-color: #666666;
+            --background-color: #d5f1d5; /* Light green background */
+            --card-background-color: #ffffff;
+            --border-color: #e0e0e0;
+            --accent-color: #3f51b5; /* Indigo */
+            --button-hover-color: #303f9f;
+            --icon-color: #608b60; /* Greenish Blue Grey */
+            --shadow-color: rgba(0, 0, 0, 0.08);
+            --button-text-color: #1B5E20; /* NEW: Dark green for button text */
+        }
+
+        /* Base styles for the body */
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif; /* Apply the Inter font */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; /* Minimum height of the viewport */
+            background-color: var(--background-color);
+            color: var(--primary-text-color);
+            overflow: hidden; /* Hide overflow to prevent scrollbars */
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased; /* Improve text rendering on WebKit browsers */
+            -moz-osx-font-smoothing: grayscale; /* Improve text rendering on Firefox */
+        }
+
+        /* Styles for the main container */
+        .container {
+            text-align: center;
+            padding: 40px;
+            border-radius: 12px;
+            background-color: var(--card-background-color);
+            box-shadow: 0 10px 25px var(--shadow-color); /* Soft shadow for depth */
+            max-width: 550px;
+            width: 90%; /* Responsive width */
+            position: relative;
+            box-sizing: border-box; /* Include padding and border in the element's total width and height */
+            border: 1px solid var(--border-color); /* Subtle border */
+        }
+
+        /* Wrapper for the icon to manage its position and sizing */
+        .icon-wrapper {
+            margin-bottom: 30px;
+            position: relative;
+            width: 100px;
+            height: 100px;
+            margin-left: auto;
+            margin-right: auto; /* Center the icon wrapper */
+        }
+
+        /* The circular background for the icon */
+        .icon-circle {
+            width: 100px;
+            height: 100px;
+            background-color: var(--background-color); /* Light Green */
+            border-radius: 50%; /* Make it a perfect circle */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 1; /* Ensure the circle is above the waving lines */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Shadow for the circle */
+        }
+
+        /* Styles for the alert icon content */
+        .icon-alert {
+            font-size: 60px;
+            color: var(--icon-color); /* Greenish Blue Grey */
+            font-weight: bold;
+            line-height: 1; /* Ensure perfect vertical centering */
+            display: block; /* For better centering */
+        }
+
+        /* Container for the animated Wi-Fi lines */
+        .wifi-lines {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 0; /* Ensure lines are behind the main icon */
+            transform: scale(0.8); /* Make lines slightly smaller than circle */
+        }
+
+        /* Individual Wi-Fi line styles */
+        .line {
+            position: absolute;
+            border: 4px solid var(--icon-color);
+            border-radius: 50%;
+            animation: disconnectWave 2s infinite ease-out; /* Apply wave animation */
+            opacity: 0; /* Start hidden */
+        }
+
+        /* Specific sizing and animation delays for each line */
+        .line:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            animation-delay: 0s;
+        }
+        .line:nth-child(2) {
+            width: 120px;
+            height: 120px;
+            animation-delay: 0.3s;
+        }
+        .line:nth-child(3) {
+            width: 160px;
+            height: 160px;
+            animation-delay: 0.6s;
+        }
+
+        /* Heading styles */
+        h1 {
+            font-size: 2.2em;
+            margin-bottom: 15px;
+            color: var(--primary-text-color);
+            font-weight: 700;
+        }
+
+        /* Paragraph styles */
+        p {
+            font-size: 1.1em;
+            margin-bottom: 30px;
+            color: var(--secondary-text-color);
+            max-width: 450px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Button styles */
+        button {
+            background-color: var(--background-color); /* Light green background */
+            color: var(--button-text-color); /* FIXED: Using new dark green variable */
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transitions */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Button shadow */
+        }
+
+        /* Button hover effect */
+        button:hover {
+            background-color: #c0e0c0; /* Slightly darker green on hover */
+            transform: translateY(-2px); /* Slight lift on hover */
+        }
+
+        /* Button active (click) effect */
+        button:active {
+            transform: translateY(0); /* Return to original position on click */
+            background-color: #b0d0b0; /* Even darker green on active */
+        }
+
+        /* Keyframe Animations */
+        @keyframes disconnectWave {
+            0% {
+                transform: scale(0.5);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1.2);
+                opacity: 0;
+            }
+        }
+
+        /* Responsive adjustments for smaller screens */
+        @media (max-width: 600px) {
+            .container {
+                padding: 30px 20px;
+            }
+            h1 {
+                font-size: 1.8em;
+            }
+            p {
+                font-size: 0.95em;
+            }
+            button {
+                padding: 10px 20px;
+                font-size: 0.9em;
+            }
+            .icon-wrapper {
+                width: 80px;
+                height: 80px;
+            }
+            .icon-circle {
+                width: 80px;
+                height: 80px;
+            }
+            .icon-alert {
+                font-size: 50px;
+            }
+            .line:nth-child(1) {
+                width: 60px;
+                height: 60px;
+            }
+            .line:nth-child(2) {
+                width: 100px;
+                height: 100px;
+            }
+            .line:nth-child(3) {
+                width: 140px;
+                height: 140px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Main container for the "No Internet" message -->
+    <div class="container">
+        <!-- Icon wrapper with animated Wi-Fi lines -->
+        <div class="icon-wrapper">
+            <!-- Central icon circle -->
+            <div class="icon-circle">
+                <span class="icon-alert" id="icon-alert-content">!</span>
+            </div>
+            <!-- Waving Wi-Fi lines for animation -->
+            <div class="wifi-lines" id="wifi-lines">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+        </div>
+        <!-- Heading and paragraph for the message -->
+        <h1 id="status-heading">Connection Interrupted</h1><br>
+        <center><p id="status-message">It seems your device is currently offline. Please check your network cables or Wi-Fi connection and try again.</p></center><br>
+        <!-- Reload page button -->
+        <button id="refreshButton" style="padding: 10px 20px; font-size: 1em;">Reload Page</button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const refreshButton = document.getElementById('refreshButton');
+
+            // Event listener for the reload button
+            refreshButton.addEventListener('click', () => {
+                // Directly reload the page without any alert
+                window.location.reload();
+            });
+
+            // Listen for network online event to redirect back to the referring page or index.html
+            window.addEventListener('online', () => {
+                const originalPage = sessionStorage.getItem('originalPage');
+                if (originalPage) {
+                    sessionStorage.removeItem('originalPage'); // Clear after use
+                    window.location.href = originalPage;
+                } else if (document.referrer && document.referrer !== window.location.href) { // Ensure not redirecting to itself
+                    window.location.href = document.referrer;
+                } else {
+                    window.location.href = 'index.html';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

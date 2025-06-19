@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Product Detail - Joyguru Basanalay</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="nav-menu.css" />
+  <style>
+  /* Loading screen styles */
+  #loading-screen {
+    display: none; /* Hidden by default, show it when needed with JavaScript */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+    z-index: 9999; /* Ensure it's on top of other content */
+    display: flex; /* Use flexbox for centering content */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+  }
+
+  #loading-spinner {
+    border: 6px solid rgba(0, 0, 0, 0.1); /* Light grey border for the spinner background */
+    border-top: 6px solid #4caf50; /* Green top border for the spinning effect */
+    border-radius: 50%; /* Make it a circle */
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite; /* Apply the spinning animation */
+  }
+
+  /* Keyframe animation for the spinner */
+  @keyframes spin {
+    0% { transform: rotate(0deg); } /* Start at 0 degrees rotation */
+    100% { transform: rotate(360deg); } /* End at 360 degrees rotation, creating a continuous spin */
+  }
+  </style>
+</head>
+<body>
+  
+    <nav class="nav-menu">
+      <a href="index.html" class="nav-item" id="nav-shop">
+        <svg xmlns="http://www.w3.org/2000/svg" class="nav-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" >
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3 9l9-6 9 6v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 22V12h6v10" />
+        </svg>
+        <span class="nav-label">Shop</span>
+      </a>
+      <a href="product.html" class="nav-item" id="nav-explore">
+        <svg xmlns="http://www.w3.org/2000/svg" class="nav-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" >
+          <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+        </svg>
+        <span class="nav-label">Explore</span>
+      </a>
+      <a href="cart.html" class="nav-item" id="nav-cart">
+        <svg xmlns="http://www.w3.org/2000/svg" class="nav-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" >
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4" />
+          <circle cx="7" cy="21" r="1" />
+          <circle cx="17" cy="21" r="1" />
+        </svg>
+        <span class="nav-label">Cart</span>
+      </a>
+      <a href="account.html" class="nav-item" id="nav-account">
+        <svg xmlns="http://www.w3.org/2000/svg" class="nav-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" >
+          <path stroke-linecap="round" stroke-linejoin="round" d="M5.121 17.804A13.937 13.937 0 0112 15c2.5 0 4.847.655 6.879 1.804M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
+        <span class="nav-label">Account</span>
+      </a>
+    </nav>
+
+  <main class="product-detail">
+    <div id="product-container">
+      </div>
+  </main>
+
+  <!-- Loading screen markup -->
+  <div id="loading-screen">
+    <div id="loading-spinner"></div>
+  </div>
+
+  <script src="product-detail.js"></script>
+  
+  <script>
+    function checkNetworkStatus() {
+      if (!navigator.onLine) {
+        // Store current page URL before redirecting
+        sessionStorage.setItem('originalPage', window.location.href);
+        window.location.href = 'no_internet.html';
+      }
+    }
+
+    window.addEventListener('load', checkNetworkStatus);
+    window.addEventListener('offline', checkNetworkStatus);
+  </script>
+</body>
+</html>

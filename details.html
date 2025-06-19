@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Joyguru Basanalay</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="cart-styles.css" />
+  <link rel="stylesheet" href="nav-menu.css" />
+  <style>
+    /* Override styles to match green theme of cart.html and product.html */
+    body {
+      background-color: #e6f2e6;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #3a5f3a;
+      margin: 0;
+      padding: 0;
+    }
+
+    header.header {
+      background-color: #5aa65a;
+      padding: 15px 20px;
+      color: white;
+      font-size: 1.5rem;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .logo {
+      font-weight: bold;
+      font-size: 1.8rem;
+    }
+
+    main.checkout-page {
+      max-width: 600px;
+      margin: 30px auto;
+      padding: 25px;
+      background: #f9fff9;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(47, 79, 47, 0.3);
+    }
+
+    main.checkout-page h1, main.checkout-page h2 {
+      color: #2f4f2f;
+      margin-bottom: 20px;
+    }
+
+    #checkout-form label {
+      display: block;
+      margin-top: 15px;
+      font-weight: 600;
+      color: #3a6b3a;
+    }
+
+    #checkout-form input[type="text"],
+    #checkout-form input[type="tel"],
+    #checkout-form input[type="email"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 8px;
+      border: 1.5px solid #3a6b3a;
+      border-radius: 6px;
+      box-sizing: border-box;
+      font-size: 1.1rem;
+      color: #2f4f2f;
+      background-color: #f0fff0;
+      transition: border-color 0.3s ease;
+    }
+
+    #checkout-form input[type="text"]:focus,
+    #checkout-form input[type="tel"]:focus,
+    #checkout-form input[type="email"]:focus {
+      border-color: #4caf50;
+      outline: none;
+      background-color: #e6ffe6;
+    }
+
+    #checkout-form button {
+      margin-top: 25px;
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      padding: 14px 25px;
+      font-size: 1.1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background-color 0.3s ease;
+    }
+
+    #checkout-form button:hover {
+      background-color: #3e8e41;
+    }
+
+    #response-message {
+      margin-top: 20px;
+      font-weight: 700;
+      color: #2f4f2f;
+    }
+
+    .loading-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(255, 255, 255, 0.8);
+      z-index: 10000;
+      display: none; /* Hidden by default */
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      font-size: 1.5rem;
+      color: #4caf50;
+      font-weight: bold;
+    }
+
+    #loading-spinner {
+      border: 4px solid rgba(0, 0, 0, 0.1);
+      border-top: 4px solid #4caf50;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      animation: spin 1s linear infinite;
+      margin-bottom: 10px;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+  </style>
+</head>
+<body>
+
+  <main class="checkout-page">
+    <center><h1>Customer Details</h1></center>
+    <div id="cart-summary">
+      </div>
+
+    <form id="checkout-form">
+      <center><u><h3>Please put your contact details</h3></u></center>
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required />
+
+      <label for="phone">Phone Number:</label>
+      <input type="tel" id="phone" name="phone" required pattern="[0-9]{10,15}" />
+
+      <label for="email">Email ID:</label>
+      <input type="email" id="email" name="email" required readonly />
+
+      <h3 id="total-price">Total Price: ₹0.00</h3>
+
+      <center><button type="submit">Place Order</button></center>
+
+    <div id="response-message"></div>
+  </main>
+
+  <div id="loading-screen" class="loading-screen">
+    <div id="loading-spinner"></div>
+    Processing your order, please wait...
+  </div>
+
+  <style>
+    /* Order success popup modal styles */
+    #order-success-popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 320px;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+      z-index: 10001;
+      text-align: center;
+      padding: 40px 30px 30px 30px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #1a1a1a;
+    }
+
+    #order-success-popup .check-icon {
+      width: 80px;
+      height: 80px;
+      background-color: #4caf50;
+      border-radius: 50%;
+      margin: 0 auto 20px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 15px #4caf50;
+      position: relative;
+    }
+
+    #order-success-popup .check-icon svg {
+      width: 40px;
+      height: 40px;
+      fill: none;
+      stroke: white;
+      stroke-width: 3;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 22;
+      stroke-dashoffset: 22;
+      animation: draw-check 0.6s ease forwards;
+    }
+
+    @keyframes draw-check {
+      to {
+        stroke-dashoffset: 0;
+      }
+    }
+
+    #order-success-popup h2 {
+      font-weight: 700;
+      font-size: 1.5rem;
+      margin-bottom: 8px;
+    }
+
+    #order-success-popup p {
+      font-weight: 400;
+      font-size: 1rem;
+      color: #555;
+      margin-bottom: 30px;
+    }
+
+    #order-success-popup .btn-primary {
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      padding: 12px 0;
+      width: 100%;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      margin-bottom: 15px;
+      transition: background-color 0.3s ease;
+    }
+
+    #order-success-popup .btn-primary:hover {
+      background-color: #3e8e41;
+    }
+
+    #order-success-popup .btn-secondary {
+      background: none;
+      border: none;
+      color: #1a1a1a;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+    /* Overlay behind popup */
+    #popup-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(4px);
+      z-index: 10000;
+    }
+  </style>
+
+  <div id="popup-overlay"></div>
+  <div id="order-success-popup" role="dialog" aria-modal="true" aria-labelledby="order-success-title" aria-describedby="order-success-desc">
+    <div class="check-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M9 16.2l-3.5-3.5 1.4-1.4L9 13.4l7.1-7.1 1.4 1.4z"/>
+      </svg>
+    </div>
+    <h2 id="order-success-title">Your Order has been accepted</h2>
+    <p id="order-success-desc">We will call you shortly to confirm your order</p>
+    <button class="btn-primary" id="track-order-btn">Back to home</button>
+  </div>
+
+  <script src="details.js"></script>
+  
+  <script>
+    function checkNetworkStatus() {
+      if (!navigator.onLine) {
+        // Store current page URL before redirecting
+        sessionStorage.setItem('originalPage', window.location.href);
+        window.location.href = 'no_internet.html';
+      }
+    }
+    window.addEventListener('load', checkNetworkStatus);
+    window.addEventListener('offline', checkNetworkStatus);
+  </script>
+</body>
+</html>

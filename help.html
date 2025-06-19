@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Help - Joyguru Basanalay</title>
+    <style>
+        /* Basic Reset & Box-sizing */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f8f8;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            background: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #2e7d32; /* Changed to green theme */
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        h1::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: #2e7d32; /* Changed to green theme */
+            border-radius: 2px;
+        }
+
+        p {
+            margin-bottom: 15px;
+            font-size: 1.05em;
+            color: #555;
+        }
+
+        a {
+            color: #2e7d32;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #1b4d1b; /* Darker green on hover */
+            text-decoration: underline;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                margin: 20px auto;
+                padding: 25px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Help</h1>
+        <p><center>If you have any questions or need assistance, please contact our support team at <a href="mailto:krishanukansabanik@gmail.com">krishanukansabanik@gmail.com</a> or Call us on <a href="tel:6290319604">6290319604</a></center></p>
+        <center><p>We are here to help you with your orders, payments, and any other inquiries.</p></center>
+    </div>
+  <!-- No Internet Page Markup with Animation -->
+  <style>
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    #internetErrorPage {
+      display: none;
+      background-color: #d4f1d4;
+      color: #000;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 9999;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      font-family: Arial, sans-serif;
+      animation: fadeIn 0.5s ease forwards;
+    }
+    .internet-error-content {
+      background-color: #d4f1d4;
+      padding: 30px 40px;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      text-align: center;
+      width: 280px;
+    }
+    .internet-error-content h1 {
+      font-weight: bold;
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+    .internet-error-content p {
+      font-size: 18px;
+      margin: 8px 0;
+    }
+    .internet-error-content p:last-of-type {
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+    #retryButton {
+      background-color: #3cb371;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      padding: 12px 40px;
+      font-size: 18px;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+      animation: bounce 2s infinite;
+      transition: background-color 0.3s ease;
+    }
+    #retryButton:hover {
+      background-color: #36a362;
+    }
+  </style>
+
+  <div id="internetErrorPage" class="internet-error-page">
+    <div class="internet-error-content">
+      <h1>OOPS....</h1>
+      <p>No Internet</p>
+      <p>Please turn on WIFI or Mobile Data</p>
+      <button id="retryButton" class="retry-button">Retry</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

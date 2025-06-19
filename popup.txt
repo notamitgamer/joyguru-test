@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmation Popup</title>
+    <!-- Load Tailwind CSS for utility classes (optional, but good for base styling) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Import Inter font for consistency */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+        /* CSS variables for consistent theming */
+        :root {
+            --primary-text-color: #333;
+            --card-background-color: #ffffff;
+            --button-green: #E6F2E6; /* Light green, similar to image bubble */
+            --button-green-hover: #388238; /* Darker green for hover */
+            --shadow-color: rgba(0, 0, 0, 0.2);
+            --border-radius: 0.75rem; /* For rounded corners */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f0f0; /* Just for demonstration of the modal on a background */
+        }
+
+        /* Modal Overlay Styles */
+        .modal-overlay {
+            display: none; /* Hidden by default */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.4); /* Semi-transparent background */
+            z-index: 1000; /* Ensure it's above other content */
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Modal Content Box */
+        .modal-content {
+            background-color: var(--card-background-color);
+            padding: 2.5rem; /* Adjusted padding */
+            border-radius: var(--border-radius); /* Rounded corners */
+            box-shadow: 0 0.5rem 1.5rem var(--shadow-color); /* Soft shadow */
+            text-align: center;
+            max-width: 20rem; /* Max width for the modal */
+            width: 90%; /* Responsive width */
+            box-sizing: border-box; /* Include padding in width */
+        }
+
+        /* Message text style */
+        .modal-message {
+            font-size: 1.125rem; /* 18px */
+            color: var(--primary-text-color);
+            margin-bottom: 1.5rem; /* Space below the message */
+            font-weight: 600; /* Semi-bold */
+        }
+
+        /* Button container for flex layout */
+        .modal-buttons {
+            display: flex;
+            justify-content: space-around; /* Distribute space evenly */
+            gap: 1rem; /* Space between buttons */
+        }
+
+        /* General button style */
+        .modal-button {
+            padding: 0.75rem 1.5rem; /* Padding for buttons */
+            border: none;
+            border-radius: 0.5rem; /* Rounded button corners */
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+            flex-grow: 1; /* Allow buttons to grow and fill space */
+        }
+
+        /* "No" button specific style */
+        .modal-button.no-button {
+            background-color: var(--button-green); /* Green background */
+            color: var(--primary-text-color); /* Black text */
+        }
+
+        .modal-button.no-button:hover {
+            background-color: var(--button-green-hover);
+            transform: translateY(-2px);
+        }
+
+        /* "Yes" button specific style */
+        .modal-button.yes-button {
+            background-color: var(--button-green); /* Green background */
+            color: var(--primary-text-color); /* Black text */
+        }
+
+        .modal-button.yes-button:hover {
+            background-color: var(--button-green-hover);
+            transform: translateY(-2px);
+        }
+
+        /* Active state for buttons */
+        .modal-button:active {
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- The Popup/Modal HTML Structure -->
+    <div id="confirmationModal" class="modal-overlay">
+        <div class="modal-content">
+            <p class="modal-message">Remove this item ?</p>
+            <div class="modal-buttons">
+                <button class="modal-button no-button" id="modalNoButton">No</button>
+                <button class="modal-button yes-button" id="modalYesButton">Yes</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Example button to trigger the popup (for demonstration) -->
+    <button id="triggerPopupButton" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg">
+        Show Popup
+    </button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const confirmationModal = document.getElementById('confirmationModal');
+            const modalNoButton = document.getElementById('modalNoButton');
+            const modalYesButton = document.getElementById('modalYesButton');
+            const triggerPopupButton = document.getElementById('triggerPopupButton'); // Get the trigger button
+
+            // Function to show the modal
+            function showModal() {
+                confirmationModal.style.display = 'flex'; // Set display to flex to make it visible and centered
+            }
+
+            // Function to hide the modal
+            function hideModal() {
+                confirmationModal.style.display = 'none'; // Hide the modal
+            }
+
+            // Event listener to show the modal when the trigger button is clicked
+            if (triggerPopupButton) {
+                triggerPopupButton.addEventListener('click', showModal);
+            }
+
+            // Event listener for the "No" button
+            if (modalNoButton) {
+                modalNoButton.addEventListener('click', () => {
+                    console.log('No button clicked!');
+                    hideModal(); // Hide the modal
+                    // Add your "No" action logic here
+                });
+            }
+
+            // Event listener for the "Yes" button
+            if (modalYesButton) {
+                modalYesButton.addEventListener('click', () => {
+                    console.log('Yes button clicked!');
+                    hideModal(); // Hide the modal
+                    // Add your "Yes" action logic here (e.g., actual item removal)
+                });
+            }
+
+            // Optional: Hide modal if user clicks outside the content (on the overlay)
+            if (confirmationModal) {
+                confirmationModal.addEventListener('click', (event) => {
+                    if (event.target === confirmationModal) { // Check if the click was directly on the overlay
+                        hideModal();
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

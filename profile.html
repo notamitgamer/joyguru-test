@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Profile - Joyguru Basanalaya</title>
+  <link rel="stylesheet" href="nav-menu.css" />
+  <style>
+    body {
+      margin: 0;
+      background-color: #d9f0d9;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+    }
+    .avatar {
+      width: 120px;
+      height: 120px;
+      background-color: #ccc;
+      border-radius: 50%;
+      margin-bottom: 15px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 60px;
+      color: #666;
+      user-select: none;
+    }
+    .user-info {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .user-info h2 {
+      margin: 0;
+      font-weight: 600;
+      font-size: 1.5rem;
+    }
+    .user-info p {
+      margin: 5px 0 0 0;
+      font-weight: 400;
+      color: #333;
+    }
+    .profile-container {
+      background: #fff;
+      border-radius: 25px;
+      padding: 25px 30px;
+      width: 100%;
+      max-width: 400px;
+      box-sizing: border-box;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .profile-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid #eee;
+      font-size: 1rem;
+    }
+    .profile-row:last-child {
+      border-bottom: none;
+    }
+    .profile-label {
+      font-weight: 600;
+      color: #333;
+    }
+    .profile-value {
+      flex-grow: 1;
+      margin-left: 10px;
+      color: #555;
+    }
+    .edit-link {
+      color: #4caf50;
+      cursor: pointer;
+      font-weight: 600;
+      user-select: none;
+    }
+    input.edit-input {
+      font-size: 1.1rem;
+      padding: 0;
+      border: none;
+      border-radius: 0;
+      background: transparent;
+      width: auto;
+      margin-left: 10px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-weight: 400;
+      color: #555;
+      appearance: none;
+      -webkit-appearance: none;
+      outline: none;
+    }
+    .edit-buttons {
+      margin-left: 10px;
+    }
+    .edit-buttons button {
+      background-color: #4caf50;
+      border: none;
+      color: white;
+      padding: 4px 10px;
+      margin-left: 5px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+    .edit-buttons button.cancel-btn {
+      background-color: #ccc;
+      color: #333;
+    }
+    .tick-button {
+      background: none;
+      border: none;
+      color: #4caf50;
+      font-size: 1.5rem;
+      cursor: pointer;
+      margin-left: 10px;
+      user-select: none;
+    }
+
+    @media (max-width: 400px) {
+      body {
+        padding: 10px 5px;
+        overflow-x: hidden;
+      }
+      .profile-container {
+        max-width: 320px;
+        padding: 8px 8px;
+      }
+      .profile-row {
+        flex-wrap: wrap;
+        font-size: 0.85rem;
+      }
+      .profile-label {
+        flex-basis: 40%;
+        margin-bottom: 5px;
+      }
+      .profile-value {
+        flex-basis: 55%;
+        margin-left: 0;
+      }
+      input.edit-input {
+        width: 100%;
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="avatar" aria-label="User Avatar" role="img" id="avatar-letter">A</div>
+  <div class="user-info">
+    <h2 id="user-name">Guest User</h2>
+    <p id="user-email">guest@example.com</p>
+  </div>
+  <div class="profile-container">
+    <div class="profile-row" data-field="name" data-key="name">
+      <div class="profile-label">Name :</div>
+      <div class="profile-value" id="name-value"></div>
+      <div class="edit-link" tabindex="0" role="button" aria-label="Edit Name">Edit</div>
+    </div>
+    <div class="profile-row" data-field="mobile" data-key="phone">
+      <div class="profile-label">Mobile NO. :</div>
+      <div class="profile-value" id="mobile-value"></div>
+      <div class="edit-link" tabindex="0" role="button" aria-label="Edit Mobile Number">Edit</div>
+    </div>
+    <div class="profile-row" data-field="age" data-key="age">
+      <div class="profile-label">Age :</div>
+      <div class="profile-value" id="age-value"></div>
+      <div class="edit-link" tabindex="0" role="button" aria-label="Edit Age">Edit</div>
+    </div>
+    <div class="profile-row" data-field="sex" data-key="gender">
+      <div class="profile-label">Sex :</div>
+      <div class="profile-value" id="sex-value"></div>
+      <div class="edit-link" tabindex="0" role="button" aria-label="Edit Sex">Edit</div>
+    </div>
+     <div class="profile-row" data-field="roadname" data-key="roadname">
+      <div class="profile-label">Road Name :</div>
+      <div class="profile-value" id="roadname-value"></div>
+      <div class="edit-link" tabindex="0" role="button" aria-label="Edit Road Name">Edit</div>
+    </div>
+    <div class="profile-row" data-field="near" data-key="near">
+      <div class="profile-label">Near By :</div>
+      <div class="profile-value" id="near-value"></div>
+      <div class="edit-link" tabindex="0" role="button" aria-label="Edit Near By">Edit</div>
+    </div>
+    <div class="profile-row" data-field="pincode" data-key="pincode">
+      <div class="profile-label">Pincode :</div>
+      <div class="profile-value" id="pincode-value"></div>
+      <div class="edit-link" tabindex="0" role="button" aria-label="Edit Pincode">Edit</div>
+    </div>
+  </div>
+  
+  <script>
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxIS_ZJeX6cufKIFss1n0lc2YiEy8akfgjCvCTr1vbP4gzNSashHmMifDTBQf6m0kRywA/exec'; // Replace with your deployed Google Script URL
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const userEmailElem = document.getElementById('user-email');
+      const userNameElem = document.getElementById('user-name');
+      const loggedInUserEmail = localStorage.getItem('userEmail');
+
+      if (!loggedInUserEmail) {
+        // Redirect to login if not logged in
+        window.location.href = 'login.html';
+        return;
+      }
+
+      // Function to update the user info display (name and email below avatar)
+      function updateUserInfoDisplay(profileData, email) {
+        userEmailElem.textContent = email;
+        const displayName = (profileData.name && profileData.name !== 'Not set' && profileData.name !== '') ? profileData.name : email.split('@')[0];
+        userNameElem.textContent = displayName;
+
+        // Update avatar letter with first letter of displayName
+        const avatarLetterElem = document.getElementById('avatar-letter');
+        if (avatarLetterElem && displayName.length > 0) {
+          avatarLetterElem.textContent = displayName.charAt(0).toUpperCase();
+        } else if (avatarLetterElem) {
+          avatarLetterElem.textContent = 'U'; // Default letter if no name
+        }
+      }
+
+      // Function to fetch profile data
+      async function fetchProfileData() {
+        // Show loading screen
+        const loadingScreen = document.getElementById('loading-screen');
+        loadingScreen.style.display = 'flex';
+
+        try {
+          const response = await fetch(`${GOOGLE_SCRIPT_URL}?action=getProfile&email=${loggedInUserEmail}`);
+          const data = await response.json();
+          if (data.status === 'success' && data.profile) {
+            const profileData = data.profile;
+            localStorage.setItem('profileData', JSON.stringify(profileData)); // Store in local storage
+            updateProfileUI(profileData); // Update table values
+            updateUserInfoDisplay(profileData, loggedInUserEmail); // Update display name/email
+          } else {
+            console.log('No profile data found or error:', data.message);
+            // Initialize with default empty values if no profile is found
+            const defaultProfile = {
+              name: '',
+              phone: '',
+              age: '',
+              gender: '',
+              roadname: '',
+              near: '',
+              pincode: ''
+            };
+            localStorage.setItem('profileData', JSON.stringify(defaultProfile));
+            updateProfileUI(defaultProfile); // Update table values
+            updateUserInfoDisplay(defaultProfile, loggedInUserEmail); // Update display name/email
+          }
+        } catch (error) {
+          console.error('Error fetching profile data:', error);
+          // Load from local storage if API fails
+          const cachedProfileData = JSON.parse(localStorage.getItem('profileData'));
+          if (cachedProfileData) {
+            updateProfileUI(cachedProfileData);
+            updateUserInfoDisplay(cachedProfileData, loggedInUserEmail);
+          } else {
+             const defaultProfile = {
+              name: '',
+              phone: '',
+              age: '',
+              gender: '',
+              roadname: '',
+              near: '',
+              pincode: ''
+            };
+            localStorage.setItem('profileData', JSON.stringify(defaultProfile));
+            updateProfileUI(defaultProfile);
+            updateUserInfoDisplay(defaultProfile, loggedInUserEmail);
+          }
+        } finally {
+          // Hide loading screen after data is fetched or error handled
+          loadingScreen.style.display = 'none';
+        }
+      }
+
+      // Function to update UI with profile data (the table rows)
+      function updateProfileUI(profileData) {
+        document.querySelectorAll('.profile-row').forEach(row => {
+          const key = row.getAttribute('data-key');
+          const valueDiv = row.querySelector('.profile-value');
+          if (valueDiv && profileData[key] !== undefined) {
+            valueDiv.textContent = profileData[key] || 'Not set';
+          }
+        });
+      }
+
+      // Function to update profile data in Google Sheet
+      async function updateProfileData(fieldKey, newValue) {
+        const payload = {
+          action: 'updateProfile',
+          email: loggedInUserEmail,
+          field: fieldKey,
+          value: newValue
+        };
+        try {
+          const response = await fetch(GOOGLE_SCRIPT_URL, {
+            method: 'POST',
+            mode: 'no-cors', // Required for Google Scripts sometimes
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(payload),
+          });
+          // Note: When using 'no-cors', the response object will be opaque.
+          // You won't be able to read the response body directly.
+          // The success indication will be the lack of a network error.
+          console.log(`Update request sent for ${fieldKey}: ${newValue}`);
+
+          // Update local storage after successful (or assumed successful) API call
+          let profileData = JSON.parse(localStorage.getItem('profileData')) || {};
+          profileData[fieldKey] = newValue;
+          localStorage.setItem('profileData', JSON.stringify(profileData));
+          
+          // If the updated field is 'name', also update the main display name
+          if (fieldKey === 'name') {
+            updateUserInfoDisplay(profileData, loggedInUserEmail);
+          }
+          
+        } catch (error) {
+          console.error('Error updating profile data:', error);
+          alert('Failed to update profile. Please try again.');
+        }
+      }
+
+      // Event listeners for editing profile fields
+      document.querySelectorAll('.edit-link').forEach(link => {
+        link.addEventListener('click', () => {
+          const row = link.closest('.profile-row');
+          const fieldKey = row.getAttribute('data-key'); // Use data-key for Google Sheet column
+          const valueDiv = row.querySelector('.profile-value');
+          const labelDiv = row.querySelector('.profile-label');
+
+          if (row.querySelector('input')) return; // Already editing
+
+          const currentValue = valueDiv.textContent === 'Not set' ? '' : valueDiv.textContent;
+          valueDiv.style.display = 'none';
+          labelDiv.style.display = 'none';
+          link.style.display = 'none'; // Hide edit link
+
+          const input = document.createElement('input');
+          input.type = 'text';
+          input.value = currentValue;
+          input.className = 'edit-input';
+          input.setAttribute('aria-label', `Edit ${fieldKey}`);
+
+          const tickBtn = document.createElement('button');
+          tickBtn.className = 'tick-button';
+          tickBtn.innerHTML = '&#10003;';
+          tickBtn.setAttribute('aria-label', 'Save');
+
+          row.appendChild(input);
+          row.appendChild(tickBtn);
+          input.focus();
+
+          tickBtn.addEventListener('click', async () => {
+            const newValue = input.value.trim();
+            if (newValue === '' && fieldKey !== 'age') { // Age can be empty if not provided
+              alert('Value cannot be empty.');
+              return;
+            }
+            
+            valueDiv.textContent = newValue || 'Not set'; // Update UI immediately
+            valueDiv.style.display = '';
+            labelDiv.style.display = '';
+            link.style.display = ''; // Show edit link again
+            tickBtn.remove();
+            input.remove();
+
+            await updateProfileData(fieldKey, newValue); // Send update to Google Sheet
+          });
+
+          // Allow saving with Enter key
+          input.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+              tickBtn.click();
+            }
+          });
+        });
+      });
+
+      // Initial call to fetch data and update display
+      fetchProfileData();
+    });
+  </script>
+
+  <style>
+    /* Loading screen styles */
+    #loading-screen {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(255, 255, 255, 0.8);
+      z-index: 9999;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #loading-spinner {
+      border: 6px solid rgba(0, 0, 0, 0.1);
+      border-top: 6px solid #4caf50;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+
+  <div id="loading-screen">
+    <div id="loading-spinner"></div>
+  </div>
+
+  <nav class="nav-menu">
+    <a href="index.html" class="nav-item" id="nav-shop">
+      <svg xmlns="http://www.w3.org/2000/svg" class="nav-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" >
+        <path stroke-linecap="round" stroke-linejoin="round" d="M3 9l9-6 9 6v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9 22V12h6v10" />
+      </svg>
+      <span class="nav-label">Shop</span>
+    </a>
+    <a href="product.html" class="nav-item" id="nav-explore">
+      <svg xmlns="http://www.w3.org/2000/svg" class="nav-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" >
+        <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+      </svg>
+      <span class="nav-label">Explore</span>
+    </a>
+    <a href="cart.html" class="nav-item" id="nav-cart">
+      <svg xmlns="http://www.w3.org/2000/svg" class="nav-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" >
+        <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4" />
+        <circle cx="7" cy="21" r="1" />
+        <circle cx="17" cy="21" r="1" />
+      </svg>
+      <span class="nav-label">Cart</span>
+    </a>
+    <a href="account.html" class="nav-item active" id="nav-account">
+      <svg xmlns="http://www.w3.org/2000/svg" class="nav-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" >
+        <path stroke-linecap="round" stroke-linejoin="round" d="M5.121 17.804A13.937 13.937 0 0112 15c2.5 0 4.847.655 6.879 1.804M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+      </svg>
+      <span class="nav-label">Account</span>
+    </a>
+  </nav>
+  
+  <script>
+    function checkNetworkStatus() {
+      if (!navigator.onLine) {
+        // Store current page URL before redirecting
+        sessionStorage.setItem('originalPage', window.location.href);
+        window.location.href = 'no_internet.html';
+      }
+    }
+    window.addEventListener('load', checkNetworkStatus);
+    window.addEventListener('offline', checkNetworkStatus);
+  </script>
+</body>
+</html>
+</body>
+</html>

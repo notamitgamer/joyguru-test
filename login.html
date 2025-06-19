@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login - Joyguru Basanalay</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="product-styles.css" />
+  <link rel="stylesheet" href="nav-menu.css" />
+  <style>
+    /* New: Apply background color to the HTML/body element */
+    html, body {
+      background-color: #E6F2E6; /* Light green background outside the container */
+      margin: 0; /* Remove default body margin */
+      padding: 0; /* Remove default body padding */
+      height: 100%; /* Ensure body takes full height for background */
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Set default font */
+      display: flex; /* Use flexbox to center content vertically */
+      justify-content: center; /* Center content horizontally */
+      align-items: center; /* Center content vertically */
+      min-height: 100vh; /* Ensure it takes full viewport height */
+    }
+
+    /* Styles for the new login container (the card itself) */
+    .login-card {
+      max-width: 400px;
+      width: 90%; /* Responsive width */
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+      background: #f9f9f9; /* White-ish background for the login container */
+      box-sizing: border-box; /* Include padding in width */
+      margin: 20px auto; /* Add some margin for smaller screens, will be centered by flexbox on larger */
+    }
+
+    h2 {
+      text-align: center;
+      color: #2e7d32;
+      font-weight: 700;
+      margin-bottom: 30px;
+      font-size: 2.2rem;
+      letter-spacing: 1px;
+    }
+    label {
+      display: block;
+      margin-top: 18px;
+      font-weight: 600;
+      color: #333;
+      font-size: 1.05rem;
+    }
+    input[type="email"], input[type="text"] {
+      width: 100%;
+      padding: 12px 14px;
+      margin-top: 8px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1.05rem;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    input[type="email"]:focus, input[type="text"]:focus {
+      border-color: #2e7d32;
+      outline: none;
+      box-shadow: 0 0 8px rgba(46, 125, 50, 0.4);
+    }
+    button {
+      margin-top: 30px;
+      padding: 14px 25px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      background-color: #2e7d32;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      width: 100%;
+      font-weight: 600;
+    }
+    button:hover:not(:disabled) {
+      background-color: #27642a;
+      transform: translateY(-2px);
+    }
+    button:active:not(:disabled) {
+      transform: translateY(0);
+    }
+    button:disabled {
+      background-color: #a5d6a7;
+      cursor: not-allowed;
+      transform: none;
+    }
+    #otp-section {
+      display: none;
+      animation: fadeIn 0.5s ease forwards;
+    }
+    #message {
+      margin-top: 25px;
+      font-weight: 600;
+      text-align: center;
+      min-height: 24px;
+      font-size: 1rem;
+      color: #555;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+
+    /* Loading screen styles */
+    .loading-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: 10000;
+      display: none; /* Hidden by default */
+      justify-content: center;
+      align-items: center;
+      backdrop-filter: blur(3px);
+    }
+    .loading-modal {
+      background: linear-gradient(135deg, #ffffff, #f0f0f0);
+      border-radius: 12px;
+      padding: 30px 40px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 280px;
+      color: #2e7d32;
+      font-weight: 700;
+      font-size: 1.6rem;
+      text-align: center;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      animation: fadeIn 0.3s ease-out;
+    }
+    #loading-spinner {
+      border: 5px solid rgba(46, 125, 50, 0.2);
+      border-top: 5px solid #2e7d32;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      animation: spin 1.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+      margin-bottom: 20px;
+      box-shadow: 0 0 15px rgba(46, 125, 50, 0.6);
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Responsive adjustments for smaller screens */
+    @media (max-width: 500px) {
+      .login-card {
+        margin: 20px; /* Adjust margin for smaller screens */
+        padding: 20px;
+        border-radius: 8px; /* Slightly less rounded */
+        box-shadow: none; /* Remove shadow on very small screens for cleaner look */
+      }
+      h2 {
+        font-size: 1.8rem;
+      }
+      button {
+        padding: 12px 20px;
+        font-size: 1.1rem;
+      }
+      .loading-modal {
+        width: 85%;
+        padding: 25px;
+        font-size: 1.4rem;
+      }
+      #loading-spinner {
+        width: 50px;
+        height: 50px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="loading-screen" class="loading-screen">
+    <div class="loading-modal">
+      <div id="loading-spinner"></div>
+      Loading, please wait...
+    </div>
+  </div>
+
+  <div class="login-card">
+    <h2>Login</h2>
+    <form id="login-form" onsubmit="return false;">
+      <label for="email">Email Address:</label>
+      <input type="email" id="email" required placeholder="Enter your email" />
+
+      <button id="send-otp-btn" type="button">Send OTP</button>
+
+      <div id="otp-section">
+        <label for="otp">Enter OTP:</label>
+        <input type="text" id="otp" maxlength="6" placeholder="Enter OTP" />
+        <button id="verify-otp-btn" type="button">Verify OTP</button>
+      </div>
+    </form>
+    <div id="message"></div>
+  </div>
+
+
+  <script src="login.js"></script>
+  
+  <script>
+    function checkNetworkStatus() {
+      if (!navigator.onLine) {
+        // Store current page URL before redirecting
+        sessionStorage.setItem('originalPage', window.location.href);
+        window.location.href = 'no_internet.html';
+      }
+    }
+    window.addEventListener('load', checkNetworkStatus);
+    window.addEventListener('offline', checkNetworkStatus);
+  </script>
+</body>
+</html>

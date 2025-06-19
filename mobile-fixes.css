@@ -1,0 +1,191 @@
+@media (max-width: 768px) {
+  .search-bar {
+    max-width: 95%;
+    margin: 15px auto;
+    gap: 8px;
+  }
+
+  .search-bar input[type="text"] {
+    font-size: 1rem;
+    padding: 8px 12px;
+  }
+
+  .search-bar button {
+    padding: 8px 15px;
+    font-size: 1rem;
+  }
+
+  .discount-slideshow {
+    margin: 15px auto;
+    border-radius: 10px;
+  }
+
+  .discount-slideshow img {
+    border-radius: 10px;
+    object-fit: cover; /* Ensure images scale and maintain aspect ratio */
+    height: auto; /* Adjust height automatically based on width */
+  }
+
+  .discount-slideshow .slide-text {
+    font-size: 1rem;
+    bottom: 10px;
+    left: 10px;
+  }
+
+  .hero {
+    padding: 30px 10px;
+    margin: 20px auto;
+    border-radius: 10px;
+  }
+
+  .hero h1 {
+    font-size: 1.8rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
+
+  .best-sellers {
+    margin: 20px auto;
+    padding: 0 10px;
+  }
+
+  .best-sellers h2 {
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+  }
+
+  .best-seller-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start; /* Align items to the start for better scrolling */
+    gap: 10px;
+    overflow-x: auto; /* Enable horizontal scrolling */
+    padding-bottom: 10px;
+  }
+
+  .best-seller-card {
+    width: 160px; /* Adjust card width */
+    min-width: 160px;
+    padding: 10px;
+    border-radius: 10px;
+  }
+
+  .best-seller-card img {
+    height: 100px; /* Adjust image height */
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 8px;
+  }
+
+  .best-seller-card h3 {
+    font-size: 1rem;
+    margin: 8px 0 3px 0;
+  }
+
+  .best-seller-card p {
+    font-size: 0.9rem;
+  }
+
+  section {
+    width: 95%;
+    padding: 15px;
+    margin: 10px auto;
+  }
+
+  .product-card {
+    width: 120px;
+  }
+
+  .footer {
+    font-size: 0.9rem;
+    padding: 15px 10px;
+    margin-top: 30px;
+    border-radius: 8px 8px 0 0;
+  }
+
+  body {
+    padding-bottom: 60px; /* Adjust bottom padding for the fixed nav */
+  }
+}
+
+@media (max-width: 480px) {
+  .search-bar {
+    flex-direction: row;
+    gap: 0px;
+    max-width: 90%;
+    margin: 10px auto;
+  }
+
+  .search-bar input[type="text"] {
+    flex-grow: 2;
+    padding: 10px 15px;
+    font-size: 1rem;
+  }
+
+  .search-bar button {
+    flex-shrink: 0;
+    padding: 6px 10px;
+    font-size: 0.85rem;
+    width: 40px;
+  }
+
+  .discount-slideshow {
+    max-width: 80%;
+    margin: 15px auto;
+  }
+
+  .discount-slideshow .slide-text {
+    font-size: 0.8rem;
+    bottom: 6px;
+    left: 6px;
+  }
+
+  .hero {
+    max-width: 80%;
+    padding: 20px 10px;
+    margin: 15px auto;
+  }
+
+  .hero h1 {
+    font-size: 1.4rem;
+  }
+
+  .hero p {
+    font-size: 0.8rem;
+  }
+
+  .best-sellers {
+    max-width: 80%;
+    margin: 15px auto;
+    padding: 0 10px;
+  }
+
+  .best-seller-list {
+    gap: 6px;
+  }
+
+  .best-seller-card {
+    width: 120px;
+    min-width: 120px;
+    padding: 8px;
+  }
+
+  .best-seller-card img {
+    height: 70px;
+  }
+
+  .best-seller-card h3 {
+    font-size: 0.8rem;
+  }
+
+  .best-seller-card p {
+    font-size: 0.7rem;
+  }
+
+  .product-card {
+    width: 90px;
+  }
+}

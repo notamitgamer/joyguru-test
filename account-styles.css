@@ -1,0 +1,85 @@
+.account-container {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  color: #000;
+}
+
+.account-greeting h2 {
+  font-weight: bold;
+  font-size: 1.5rem;
+  margin-bottom: 0;
+}
+
+.account-greeting p {
+  font-size: 1rem;
+  margin-top: 4px;
+  color: #555;
+}
+
+.account-menu {
+  margin-top: 20px;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+
+.account-menu-item {
+  display: flex;
+  align-items: center;
+  padding: 15px 0;
+  border-bottom: 1px solid #ddd;
+  color: #000;
+  text-decoration: none;
+}
+
+.account-menu-item:last-child {
+  border-bottom: none;
+}
+
+.account-menu-icon {
+  width: 20px;
+  height: 20px;
+  stroke: #555;
+  margin-right: 15px;
+  flex-shrink: 0;
+}
+
+.account-menu-item span {
+  flex-grow: 1;
+  font-weight: 600;
+}
+
+.account-menu-arrow {
+  width: 16px;
+  height: 16px;
+  stroke: #888;
+  flex-shrink: 0;
+}
+
+.logout-button {
+  margin-top: 30px;
+  width: 100%;
+  background-color: #f0f5f0;
+  border: none;
+  border-radius: 12px;
+  padding: 15px;
+  color: #4caf50;
+  font-weight: 600;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.logout-button:hover {
+  background-color: #e0f0e0;
+}
+
+.logout-icon {
+  width: 20px;
+  height: 20px;
+  stroke: #4caf50;
+  margin-right: 10px;
+  flex-shrink: 0;
+}

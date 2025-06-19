@@ -1,0 +1,86 @@
+<!-- Loading screen markup -->
+<div id="loading-screen">
+  <div id="loading-spinner"></div>
+</div>
+
+<style>
+  /* Loading screen styles */
+  #loading-screen {
+    display: none; /* Hidden by default, show it when needed with JavaScript */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+    z-index: 9999; /* Ensure it's on top of other content */
+    display: flex; /* Use flexbox for centering content */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+  }
+
+  #loading-spinner {
+    border: 6px solid rgba(0, 0, 0, 0.1); /* Light grey border for the spinner background */
+    border-top: 6px solid #4caf50; /* Green top border for the spinning effect */
+    border-radius: 50%; /* Make it a circle */
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite; /* Apply the spinning animation */
+  }
+
+  /* Keyframe animation for the spinner */
+  @keyframes spin {
+    0% { transform: rotate(0deg); } /* Start at 0 degrees rotation */
+    100% { transform: rotate(360deg); } /* End at 360 degrees rotation, creating a continuous spin */
+  }
+</style>
+
+<script>
+  // Example of how to use the loading screen with your existing fetchProfileData function:
+
+  // Make sure to place the fetchProfileData function within a script tag in your HTML
+  // or link it from an external JS file if it's already there.
+
+  // Original fetchProfileData function (modified to show/hide loading screen)
+  /*
+  async function fetchProfileData() {
+    const loadingScreen = document.getElementById('loading-screen');
+    loadingScreen.style.display = 'flex'; // Show loading screen
+
+    try {
+      const response = await fetch(`${GOOGLE_SCRIPT_URL}?action=getProfile&email=${loggedInUserEmail}`);
+      const data = await response.json();
+      if (data.status === 'success' && data.profile) {
+        const profileData = data.profile;
+        localStorage.setItem('profileData', JSON.stringify(profileData));
+        updateProfileUI(profileData);
+        updateUserInfoDisplay(profileData, loggedInUserEmail);
+      } else {
+        console.log('No profile data found or error:', data.message);
+        const defaultProfile = {
+          name: '', phone: '', age: '', gender: '', roadname: '', near: '', pincode: ''
+        };
+        localStorage.setItem('profileData', JSON.stringify(defaultProfile));
+        updateProfileUI(defaultProfile);
+        updateUserInfoDisplay(defaultProfile, loggedInUserEmail);
+      }
+    } catch (error) {
+      console.error('Error fetching profile data:', error);
+      const cachedProfileData = JSON.parse(localStorage.getItem('profileData'));
+      if (cachedProfileData) {
+        updateProfileUI(cachedProfileData);
+        updateUserInfoDisplay(cachedProfileData, loggedInUserEmail);
+      } else {
+        const defaultProfile = {
+          name: '', phone: '', age: '', gender: '', roadname: '', near: '', pincode: ''
+        };
+        localStorage.setItem('profileData', JSON.stringify(defaultProfile));
+        updateProfileUI(defaultProfile);
+        updateUserInfoDisplay(defaultProfile, loggedInUserEmail);
+      }
+    } finally {
+      loadingScreen.style.display = 'none'; // Hide loading screen
+    }
+  }
+  */
+</script>

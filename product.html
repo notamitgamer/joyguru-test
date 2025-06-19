@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Products - Joyguru Basanalay</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="product-styles.css" />
+  <link rel="stylesheet" href="nav-menu.css" />
+  <style>
+  /* Loading screen styles */
+  #loading-screen {
+    display: none; /* Hidden by default, show it when needed with JavaScript */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+    z-index: 9999; /* Ensure it's on top of other content */
+    display: flex; /* Use flexbox for centering content */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+  }
+
+  #loading-spinner {
+    border: 6px solid rgba(0, 0, 0, 0.1); /* Light grey border for the spinner background */
+    border-top: 6px solid #4caf50; /* Green top border for the spinning effect */
+    border-radius: 50%; /* Make it a circle */
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite; /* Apply the spinning animation */
+  }
+
+  /* Keyframe animation for the spinner */
+  @keyframes spin {
+    0% { transform: rotate(0deg); } /* Start at 0 degrees rotation */
+    100% { transform: rotate(360deg); } /* End at 360 degrees rotation, creating a continuous spin */
+  }
+  </style>
+</head>
+<body>
+  
+    <nav class="nav-menu">
+      <a href="index.html" class="nav-item" id="nav-shop">
+        <svg xmlns="http://www.w3.org/2000/svg" class="nav-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" >
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3 9l9-6 9 6v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 22V12h6v10" />
+        </svg>
+        <span class="nav-label">Shop</span>
+      </a>
+      <a href="product.html" class="nav-item" id="nav-explore">
+        <svg xmlns="http://www.w3.org/2000/svg" class="nav-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" >
+          <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+        </svg>
+        <span class="nav-label">Explore</span>
+      </a>
+      <a href="cart.html" class="nav-item" id="nav-cart">
+        <svg xmlns="http://www.w3.org/2000/svg" class="nav-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" >
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4" />
+          <circle cx="7" cy="21" r="1" />
+          <circle cx="17" cy="21" r="1" />
+        </svg>
+        <span class="nav-label">Cart</span>
+      </a>
+      <a href="account.html" class="nav-item" id="nav-account">
+        <svg xmlns="http://www.w3.org/2000/svg" class="nav-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" >
+          <path stroke-linecap="round" stroke-linejoin="round" d="M5.121 17.804A13.937 13.937 0 0112 15c2.5 0 4.847.655 6.879 1.804M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
+        <span class="nav-label">Account</span>
+      </a>
+    </nav>
+
+    <div class="product-detail">
+      <h1><center>Products</center></h1>
+
+      <center><div class="search-container">
+        <input type="text" id="productSearchInput" placeholder="Search products..." />
+        <button id="productSearchBtn">Search</button>
+      </div>
+      <div class="products" id="product-list">
+      </div></center>
+
+      <div id="popup" class="popup" style="display:none; position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: #333; color: white; padding: 10px 20px; border-radius: 5px; z-index: 1000;"></div>
+    </div>
+  
+  <!-- Loading screen markup -->
+  <div id="loading-screen">
+    <div id="loading-spinner"></div>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const webAppUrl = 'https://script.google.com/macros/s/AKfycbwKl1KA3y1r_CjHUDSvx1Ex_riNKQEGdMI7gRZcPYB4saGqVn5hcZB_Mqdjx7thJuWD/exec'; // Replace with your actual web app URL
+      const loadingScreen = document.getElementById('loading-screen');
+
+      // Get search query from URL parameter
+      function getSearchQuery() {
+        const params = new URLSearchParams(window.location.search);
+        return params.get('search') || '';
+      }
+
+      async function getProducts() {
+        try {
+          const response = await fetch(webAppUrl + '?action=getProducts');
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          const data = await response.json();
+          return data.products;
+        } catch (error) {
+          console.error('Error fetching products:', error);
+          showPopup('Failed to load products.');
+          return []; // Return an empty array to avoid errors
+        }
+      }
+
+      function renderProducts(products) {
+        const productList = document.getElementById('product-list');
+        productList.innerHTML = '';
+        if (products.length === 0) {
+          productList.innerHTML = '<p style="text-align:center; font-size:1.2rem; color:#666;">No products available.</p>';
+          return;
+        }
+        products.forEach(product => {
+          const productCard = document.createElement('div');
+          productCard.className = 'product-card';
+          productCard.innerHTML = `
+            <a href="product-detail.html?id=${product.id}" class="product-link">
+              <img src="${Array.isArray(product.images) ? product.images[0] : product.images}" alt="${product.name}" class="product-image" />
+              <div class="product-info">
+                <h3 class="product-name">${product.name}</h3>
+                <p class="product-price">₹${parseFloat(product.price).toFixed(2)}</p>
+              </div>
+            </a>
+          `;
+          productList.appendChild(productCard);
+        });
+      }
+
+      function showPopup(message) {
+        const popup = document.getElementById('popup');
+        popup.textContent = message;
+        popup.style.display = 'block';
+        setTimeout(() => {
+          popup.style.display = 'none';
+        }, 3000);
+      }
+
+      function filterProducts(query) {
+        const products = window.allProducts || []; // Use cached products
+        const filtered = products.filter(p => p.name.toLowerCase().includes(query.toLowerCase()));
+        if (filtered.length === 0) {
+          showPopup('No products found.');
+        }
+        renderProducts(filtered);
+      }
+
+      const searchQuery = getSearchQuery();
+
+      // Set the search input value to the searchQuery from URL parameter for better UX
+      const searchInput = document.getElementById('productSearchInput');
+      searchInput.value = searchQuery;
+
+      loadingScreen.style.display = 'flex';
+      getProducts()
+        .then(products => {
+          window.allProducts = products; // Cache the products
+          if (searchQuery) {
+            filterProducts(searchQuery);
+            showPopup(`Showing results for: ${searchQuery}`);
+          } else {
+            renderProducts(products);
+          }
+          loadingScreen.style.display = 'none';
+        })
+        .catch(error => {
+          console.error("Error initializing products:", error);
+          showPopup("Failed to initialize products.");
+          loadingScreen.style.display = 'none';
+        });
+
+      const searchBtn = document.getElementById('productSearchBtn');
+
+        searchBtn.addEventListener('click', () => {
+          const query = searchInput.value.trim();
+          if (query) {
+            filterProducts(query);
+            showPopup(`Searching for: ${query}`);
+            // Removed clearing the search input to improve UX
+            // searchInput.value = '';
+          } else {
+            showPopup('Please enter a search term.');
+          }
+        });
+
+      searchInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+          searchBtn.click();
+        }
+      });
+    });
+    function checkNetworkStatus() {
+      if (!navigator.onLine) {
+        // Store current page URL before redirecting
+        sessionStorage.setItem('originalPage', window.location.href);
+        window.location.href = 'no_internet.html';
+      }
+    }
+
+    window.addEventListener('load', checkNetworkStatus);
+    
+    window.addEventListener('offline', checkNetworkStatus);
+  </script>
+  <!-- No Internet Page Markup with Animation -->
+  <style>
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    #internetErrorPage {
+      display: none;
+      background-color: #d4f1d4;
+      color: #000;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 9999;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      font-family: Arial, sans-serif;
+      animation: fadeIn 0.5s ease forwards;
+    }
+    .internet-error-content {
+      background-color: #d4f1d4;
+      padding: 30px 40px;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      text-align: center;
+      width: 280px;
+    }
+    .internet-error-content h1 {
+      font-weight: bold;
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+    .internet-error-content p {
+      font-size: 18px;
+      margin: 8px 0;
+    }
+    .internet-error-content p:last-of-type {
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+    #retryButton {
+      background-color: #3cb371;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      padding: 12px 40px;
+      font-size: 18px;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+      animation: bounce 2s infinite;
+      transition: background-color 0.3s ease;
+    }
+    #retryButton:hover {
+      background-color: #36a362;
+    }
+  </style>
+  <script src="script.js"></script>
+</body>
+</html>

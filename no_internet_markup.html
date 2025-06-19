@@ -1,0 +1,70 @@
+<!-- No Internet Page Markup with Animation -->
+<style>
+  @keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  #internetErrorPage {
+    display: none;
+    background-color: #d4f1d4;
+    color: #000;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: Arial, sans-serif;
+    animation: fadeIn 0.5s ease forwards;
+  }
+  .internet-error-content {
+    background-color: #d4f1d4;
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    text-align: center;
+    width: 280px;
+  }
+  .internet-error-content h1 {
+    font-weight: bold;
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  .internet-error-content p {
+    font-size: 18px;
+    margin: 8px 0;
+  }
+  .internet-error-content p:last-of-type {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  #retryButton {
+    background-color: #3cb371;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 12px 40px;
+    font-size: 18px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    animation: bounce 2s infinite;
+    transition: background-color 0.3s ease;
+  }
+  #retryButton:hover {
+    background-color: #36a362;
+  }
+</style>
+
+<div id="internetErrorPage" class="internet-error-page">
+  <div class="internet-error-content">
+    <h1>OOPS....</h1>
+    <p>No Internet</p>
+    <p>Please turn on WIFI or Mobile Data</p>
+    <button id="retryButton" class="retry-button">Retry</button>
+  </div>
+</div>
