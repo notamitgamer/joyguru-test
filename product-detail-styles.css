@@ -1,0 +1,303 @@
+/* General Body & Typography (keep as is) */
+body {
+    font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color: #333;
+    line-height: 1.6;
+    background-color: #f8f9fa;
+    padding-bottom: 120px;
+}
+
+/* Product Container (keep as is) */
+#product-container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 30px;
+    /* background-color: #ffffff; */
+    /* box-shadow: 0 8px 25px rgba(0,0,0,0.1); */
+    border-radius: 18px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    align-items: flex-start;
+}
+
+/* Product Image Carousel (keep as is) */
+.product-image-carousel {
+    flex: 1;
+    min-width: 300px;
+    text-align: center;
+    margin-bottom: 0;
+    position: sticky;
+    top: 20px;
+}
+
+.main-product-image {
+    max-width: 100%;
+    max-height: 450px;
+    border-radius: 12px;
+    object-fit: contain;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    transition: transform 0.3s ease-in-out;
+}
+
+.main-product-image:hover {
+    transform: scale(1.02);
+}
+
+.image-dots {
+    margin-top: 15px;
+}
+
+.image-dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin: 0 6px;
+    background-color: #d1d5db;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.image-dot.active {
+    background-color: #28a745;
+    transform: scale(1.2);
+}
+
+/* Product Information (keep as is) */
+.product-info-row {
+    flex: 2;
+    min-width: 300px;
+    padding: 0;
+    border-top: none;
+    margin-bottom: 0;
+}
+
+.product-name-weight h1 {
+    font-size: 2.5rem;
+    margin-bottom: 2px; /* Reduced from 15px */
+    color: #1a202c;
+    font-weight: 700;
+}
+
+.product-info-row p {
+    font-size: 1.05rem;
+    color: #555;
+    margin: 0px 0; /* Reduced from 8px */
+}
+
+.product-price {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #007bff;
+    margin-bottom: 3px;
+    margin-top: 3px; /* Reduced from 20px */
+}
+
+.product-info-row h2 {
+    font-size: 1.6rem;
+    color: #28a745;
+    margin-top: 15px; /* Reduced from 25px */
+    margin-bottom: 1px,0; /* Reduced from 10px */
+    border-bottom: 2px solid #e9ecef;
+    padding-bottom: 5px;
+}
+
+.product-info-row p:last-of-type {
+    font-size: 1.1rem;
+    color: #444;
+    margin-bottom: 0;
+}
+
+/* Fixed Add to Cart / Quantity Container - CRITICAL CHANGES HERE */
+#add-to-cart-container {
+    position: fixed;
+    bottom: 60px; /* Above nav-menu */
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    z-index: 10000;
+    background-color: #ffffff;
+    padding: 15px 20px; /* Added horizontal padding for content */
+    box-shadow: 0 -4px 15px rgba(0,0,0,0.08);
+    border-top: 1px solid #eee;
+    /* New: Control flex items directly here */
+}
+
+/* Buttons - CRITICAL CHANGES FOR WIDTH */
+.add-to-basket-btn, .go-to-cart-btn {
+    flex-grow: 1; /* Allow buttons to grow to fill space */
+    max-width: 300px; /* Limit their max width on larger screens for better aesthetics */
+    padding: 12px 35px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    text-align: center; /* Ensure text is centered within growing button */
+}
+
+.add-to-basket-btn {
+    background-color: #28a744; /* Primary green for action button */
+    color: white;
+    border: none;
+    box-shadow: 0 4px 12px rgba(40, 167, 69, 0.4);
+}
+
+.add-to-basket-btn:hover {
+    background-color: #218838;
+    box-shadow: 0 6px 16px rgba(40, 167, 69, 0.6);
+    transform: translateY(-2px);
+}
+
+.go-to-cart-btn {
+    background-color: #007bff; /* Blue for 'Go to Cart' - This was your previous request */
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.4);
+}
+
+.go-to-cart-btn:hover {
+    background-color: #0056b3;
+    box-shadow: 0 6px 16px rgba(0, 123, 255, 0.6);
+    transform: translateY(-2px);
+}
+
+/* Quantity Controls - CRITICAL CHANGES FOR WIDTH AND THEME */
+#dynamic-quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 0; /* Remove gap between sub-elements to make it a single unit */
+    flex-grow: 1; /* Allow the entire control unit to grow */
+    max-width: 300px; /* Match max-width of buttons */
+    justify-content: space-between; /* Distribute space evenly inside */
+    background-color: #f0f8f0; /* Very subtle green tint for the container */
+    border: 1px solid #a0d8a0; /* Greenish border */
+    border-radius: 8px; /* Match button border-radius */
+    overflow: hidden; /* Ensure rounded corners clip internal elements */
+}
+
+.quantity-btn {
+    background-color: #e6f7e6; /* Lighter green for buttons */
+    color: #218838; /* Darker green text */
+    border: none; /* Remove individual button borders */
+    padding: 10px 15px; /* Adjust padding for a compact but clickable size */
+    border-radius: 0; /* Remove individual button border-radius */
+    font-size: 1.1rem;
+    font-weight: 700;
+    user-select: none;
+    box-shadow: none;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    flex-shrink: 0; /* Prevent buttons from shrinking too much */
+}
+
+.quantity-btn:first-child {
+    border-top-left-radius: 7px; /* Apply border-radius to outer corners */
+    border-bottom-left-radius: 7px;
+}
+
+.quantity-btn:last-child {
+    border-top-right-radius: 7px;
+    border-bottom-right-radius: 7px;
+}
+
+
+.quantity-btn:hover {
+    background-color: #d1ecd1; /* Darker green tint on hover */
+    color: #1c7430; /* Even darker text on hover */
+    border-color: transparent; /* No border on hover */
+}
+
+#quantity-value {
+    min-width: 40px; /* Give more space for the number */
+    text-align: center;
+    font-weight: 800; /* Make the number very bold */
+    font-size: 1.4rem; /* Larger quantity value */
+    color: #1a202c; /* Dark, prominent color for the number */
+    user-select: none;
+    flex-grow: 1; /* Allow number to grow and fill space */
+}
+
+
+/* Loading Screen (keep as is) */
+#loading-screen {
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+#loading-spinner {
+    border: 6px solid rgba(0, 0, 0, 0.1);
+    border-top: 6px solid #28a745;
+    width: 60px;
+    height: 60px;
+}
+
+/* Responsive Adjustments - CRITICAL FOR MOBILE */
+@media (max-width: 768px) {
+    #product-container {
+        flex-direction: column;
+        padding: 20px;
+        margin: 20px auto;
+    }
+
+    .product-image-carousel {
+        position: static;
+        top: auto;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .product-info-row {
+        width: 100%;
+    }
+
+    .product-name-weight h1 {
+        font-size: 2rem;
+    }
+
+    .product-price {
+        font-size: 1.6rem;
+    }
+
+    /* For mobile, stack buttons/controls */
+    #add-to-cart-container {
+        flex-direction: column; /* Stack buttons vertically on small screens */
+        gap: 10px; /* Reduced gap when stacked */
+        padding: 10px;
+    }
+
+    .add-to-basket-btn,
+    .go-to-cart-btn,
+    #dynamic-quantity-controls {
+        width: 90%; /* Take up most of the width */
+        max-width: 400px; /* Prevent them from becoming too wide on slightly larger mobiles */
+    }
+
+    /* Adjust padding for stacked buttons */
+    .add-to-basket-btn, .go-to-cart-btn {
+        padding: 10px 25px;
+        font-size: 1rem;
+    }
+
+    /* Quantity button and value adjustments for mobile */
+    .quantity-btn {
+        padding: 8px 12px; /* Slightly adjusted padding for mobile */
+        font-size: 1rem;
+    }
+
+    #quantity-value {
+        font-size: 1.2rem;
+        min-width: 35px;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Further adjustments for very small screens */
+    .add-to-basket-btn,
+    .go-to-cart-btn,
+    #dynamic-quantity-controls {
+        width: calc(100% - 40px); /* Fill width minus container padding */
+    }
+}

@@ -39,12 +39,12 @@
 }
 
 #productSearchInput:focus {
-  border-color: #10b981;
-  box-shadow: 0 0 5px #10b981;
+  border-color: #10b93a;
+  box-shadow: 0 0 5px #10b926;
 }
 
 #productSearchBtn {
-  background-color: #10b981;
+  background-color: #10b910;
   border: none;
   color: white;
   padding: 10px 20px;

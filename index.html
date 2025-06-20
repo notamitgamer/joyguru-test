@@ -435,6 +435,175 @@
         </div>
     </section>
 
+    <style>
+        /* Section Headings (applies to 'Shop By Category' heading) */
+        .section-heading {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1B5E20; /* Dark green */
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        /* Categories Section Grid */
+        .categories-grid {
+            display: grid;
+            /* Force 2 columns on larger screens for a 2x4 layout.
+               Each column takes up an equal fraction of the available space. */
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 15px; /* Space between category cards */
+            margin-bottom: 40px; /* Space below the grid */
+        }
+
+        /* Individual Category Card Styling */
+        .category-card {
+            background-color: white;
+            border-radius: 12px; /* Rounded corners for the card */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); /* Soft shadow for depth */
+            text-align: center;
+            padding: 20px 15px;
+            text-decoration: none; /* Remove underline from link */
+            color: #333; /* Default text color */
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effects */
+            display: flex; /* Use flexbox for icon and name alignment */
+            flex-direction: column; /* Stack icon and name vertically */
+            align-items: center; /* Center horizontally */
+            justify-content: center; /* Center vertically */
+            height: 100%; /* Ensure all cards have equal height in the grid row */
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px); /* Lift effect on hover */
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
+        }
+
+        /* Category Icon Styling (SVG icons) */
+        .category-icon {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 10px; /* Space between icon and name */
+            /* Default color is green, but overridden by inline SVG fill/stroke */
+        }
+
+        /* Emoji icons can sometimes be larger, adjust if needed */
+        .category-card .emoji-icon {
+            font-size: 45px; /* Adjust emoji size */
+            line-height: 1; /* Prevent extra line height */
+            margin-bottom: 10px;
+            display: block; /* Ensure it behaves like a block element */
+        }
+
+        /* Category Name Text Styling */
+        .category-name {
+            font-size: 1rem; /* 16px */
+            font-weight: 600;
+            color: #1B5E20; /* Dark green text */
+            line-height: 1.3;
+        }
+
+        /* Responsive Adjustments for Smaller Screens */
+        @media (max-width: 768px) {
+            .categories-grid {
+                /* On tablets and smaller screens, maintain 2 columns but with appropriate min-width */
+                grid-template-columns: repeat(2, 1fr); 
+                gap: 12px; /* Slightly reduced gap */
+            }
+            .category-icon, .category-card .emoji-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 35px; /* Adjust emoji size for smaller screens */
+            }
+            .category-name {
+                font-size: 0.9rem; /* Slightly smaller font on tablets */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .categories-grid {
+                /* On mobile, still maintain 2 columns */
+                grid-template-columns: repeat(2, 1fr); 
+                gap: 10px;
+            }
+            .category-card {
+                padding: 15px 10px; /* Adjusted padding */
+            }
+            .category-icon, .category-card .emoji-icon {
+                width: 35px;
+                height: 35px;
+                font-size: 30px; /* Adjust emoji size for very small screens */
+                margin-bottom: 8px;
+            }
+            .category-name {
+                font-size: 0.85rem; /* Smallest font size for mobile */
+            }
+        }
+    </style>
+
+    <!-- HTML for the Categories Section -->
+    <section class="category-section">
+        <h2 class="section-heading">Shop By Category</h2>
+        <div class="categories-grid" id="categoriesGrid">
+            <!-- Each 'a' tag below represents a category card -->
+            
+            <!-- New Arrivals -->
+            <a href="product.html?category=new_arrivals" class="category-card">
+                <span class="emoji-icon">⭐</span> <!-- Emoji for New -->
+                <span class="category-name">New Arrivals</span>
+            </a>
+
+            <!-- Stainless Steel -->
+            <a href="product.html?category=stainless_steel" class="category-card">
+                <svg xmlns="http://www.w3.org/2000/svg" class="category-icon" viewBox="0 0 24 24" fill="#B0C4DE" stroke="#696969" stroke-width="1.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h2v-6h-2v6zm0-8h2V7h-2v2z"/>
+                </svg>
+                <span class="category-name">Stainless Steel</span>
+            </a>
+
+            <!-- Pooja & Devotional -->
+            <a href="product.html?category=pooja_devotional" class="category-card">
+                <svg xmlns="http://www.w3.org/2000/svg" class="category-icon" viewBox="0 0 24 24" fill="#FFC107" stroke="#FFA000" stroke-width="1.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h1M3 12H2m15.354 3.354l-.707.707M7.346 7.346l-.707-.707m12.728 0l-.707.707M6.636 16.636l-.707.707M12 21.846a9.846 9.846 0 100-19.692 9.846 9.846 0 000 19.692z" />
+                    <circle cx="12" cy="12" r="3" fill="#FFD700" stroke="#DAA520" stroke-width="1.5"/>
+                </svg>
+                <span class="category-name">Pooja & Devotional</span>
+            </a>
+
+            <!-- Traditional Metalware -->
+            <a href="product.html?category=traditional_metalware" class="category-card">
+                <svg xmlns="http://www.w3.org/2000/svg" class="category-icon" viewBox="0 0 24 24" fill="#DAA520" stroke="#B8860B" stroke-width="1.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 2a2 2 0 012 2v2a2 2 0 01-2 2h-0a2 2 0 01-2-2V4a2 2 0 012-2zM9 10a3 3 0 00-3 3v2a3 3 0 003 3h6a3 3 0 003-3v-2a3 3 0 00-3-3H9zm3 10v2M10 22h4"/>
+                </svg>
+                <span class="category-name">Traditional Metalware</span>
+            </a>
+
+            <!-- Aluminum Cookware -->
+            <a href="product.html?category=aluminum_cookware" class="category-card">
+                <svg xmlns="http://www.w3.org/2000/svg" class="category-icon" viewBox="0 0 24 24" fill="#ADD8E6" stroke="#4682B4" stroke-width="1.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 2L4 7v10l8 5 8-5V7l-8-5zM4 7l8 5m0 0l8-5m-8 5v10"/>
+                </svg>
+                <span class="category-name">Aluminum Cookware</span>
+            </a>
+            
+            <!-- Home Appliances -->
+            <a href="product.html?category=home_appliances" class="category-card">
+                <span class="emoji-icon">🔌</span> <!-- Emoji for home appliance/power -->
+                <span class="category-name">Home Appliances</span>
+            </a>
+
+            <!-- Plastic Storage -->
+            <a href="product.html?category=plastic_storage" class="category-card">
+                <span class="emoji-icon">🧺</span> <!-- Emoji for basket/storage -->
+                <span class="category-name">Plastic Storage</span>
+            </a>
+
+            <!-- Kitchen Essentials -->
+            <a href="product.html?category=kitchen_essentials" class="category-card">
+                <span class="emoji-icon">🍴</span> <!-- Emoji for general kitchen utensils -->
+                <span class="category-name">Kitchen Essentials</span>
+            </a>
+        </div>
+    </section>
+
     <section class="value-proposition">
         <h2>Why Choose Joyguru Basanalay?</h2>
         <div class="value-prop-grid">

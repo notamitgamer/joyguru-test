@@ -78,10 +78,10 @@
         <input type="text" id="productSearchInput" placeholder="Search products..." />
         <button id="productSearchBtn">Search</button>
       </div>
-      <div class="products" id="product-list">
+      <div class="products" id="product-list" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; min-height: 200px;">
       </div></center>
 
-      <div id="popup" class="popup" style="display:none; position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: #333; color: white; padding: 10px 20px; border-radius: 5px; z-index: 1000;"></div>
+      <div id="popup" class="popup" style="display:none; position: fixed; bottom: 70px; left: 50%; transform: translateX(-50%); background: #d4edda; color: #155724; padding: 10px 20px; border-radius: 12px; z-index: 11000; max-width: 90vw; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; box-shadow: 0 2px 8px rgba(0,0,0,0.15);"></div>
     </div>
   
   <!-- Loading screen markup -->
@@ -97,6 +97,12 @@
       function getSearchQuery() {
         const params = new URLSearchParams(window.location.search);
         return params.get('search') || '';
+      }
+
+      // Get category from URL parameter (support both "category" and "catagory")
+      function getCategory() {
+        const params = new URLSearchParams(window.location.search);
+        return params.get('category') || params.get('catagory') || '';
       }
 
       async function getProducts() {
@@ -156,6 +162,7 @@
       }
 
       const searchQuery = getSearchQuery();
+      const category = getCategory();
 
       // Set the search input value to the searchQuery from URL parameter for better UX
       const searchInput = document.getElementById('productSearchInput');
@@ -164,13 +171,37 @@
       loadingScreen.style.display = 'flex';
       getProducts()
         .then(products => {
+          console.log('Fetched products:', products);
+          products.forEach(p => {
+            console.log('Product category:', p.category, 'Product catagory:', p.catagory);
+          });
           window.allProducts = products; // Cache the products
-          if (searchQuery) {
-            filterProducts(searchQuery);
-            showPopup(`Showing results for: ${searchQuery}`);
-          } else {
-            renderProducts(products);
+          let filteredProducts = products;
+
+          if (category) {
+            filteredProducts = filteredProducts.filter(p => {
+              if (!p.catagory && !p.category) return false;
+              // Check both 'catagory' and 'category' keys for robustness
+              const productCategory = p.catagory || p.category || '';
+              return productCategory.toLowerCase() === category.toLowerCase();
+            });
+            if (filteredProducts.length === 0) {
+              showPopup(`No products found for category: ${category}`);
+              renderProducts([]);
+              loadingScreen.style.display = 'none';
+              return;
+            } else {
+              showPopup(`Showing products for category: ${category}`);
+            }
           }
+
+          if (searchQuery) {
+            filteredProducts = filteredProducts.filter(p => p.name.toLowerCase().includes(searchQuery.toLowerCase()));
+            showPopup(`Showing results for: ${searchQuery}`);
+          }
+
+          renderProducts(filteredProducts);
+
           loadingScreen.style.display = 'none';
         })
         .catch(error => {
