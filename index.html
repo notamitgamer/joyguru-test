@@ -1,8 +1,756 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<title>Flowers</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="canonical" href="https://joygurubasanalay.shop/" />
+  
+  <!-- ✅ Google Site Verification -->
+  <meta name="google-site-verification" content="t0cD9T_PopQikfe3Jrku66spGLYtItlhH-FzvMyRAdU" />
+
+  <!-- ✅ SEO -->
+  <title>Joyguru Basanalay | Stainless Steel Kitchen Utensils in Kolkata</title>
+  <meta name="description" content="Buy stainless steel kitchen utensils in Kolkata at Joyguru Basanalay. Get steel plates, lunch boxes, cooking tools & more with Cash on Delivery.">
+
+  <!-- ✅ Favicon for browser & Google Search -->
+  <link rel="icon" href="https://raw.githubusercontent.com/notamitgamer/joyguru-test/refs/heads/main/icon.png" type="image/png" />
+  <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/notamitgamer/joyguru-test/refs/heads/main/icon.png" />
+
+  <!-- ✅ CSS Files -->
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="mobile-fixes.css" />
+  <link rel="stylesheet" href="nav-menu.css" />
+
+  <!-- ✅ Structured Data for Google Search -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Store",
+    "name": "Joyguru Basanalay",
+    "url": "https://joygurubasanalaykolkata.on.drv.tw/",
+    "logo": "https://raw.githubusercontent.com/notamitgamer/joyguru-test/refs/heads/main/icon.png",
+    "image": "https://raw.githubusercontent.com/notamitgamer/joyguru-test/refs/heads/main/icon.png",
+    "description": "Stainless steel kitchen utensils store in Kolkata offering plates, tiffin boxes, cooking tools & more.",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Kolkata",
+      "addressCountry": "India"
+    }
+  }
+  </script>
+    <style>
+        /* --- General Styling for New Sections --- */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding-bottom: 70px; /* Space for the fixed bottom navigation */
+            background-color: #f8f8f8;
+            color: #333;
+        }
+
+        h1, h2, h3 {
+            color: #1B5E20; /* Dark green for headings */
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        section {
+            padding: 30px 20px;
+            margin-bottom: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            text-align: center;
+            max-width: 100%;
+            box-sizing: border-box; /* Include padding in width calculation */
+        }
+
+        section.hero {
+            padding: 0;
+            box-shadow: none;
+            background-color: transparent;
+            margin-bottom: 0;
+            position: relative;
+            overflow: hidden; /* Crucial for slide animations */
+        }
+
+        .hero-slideshow, .testimonial-carousel {
+            position: relative;
+            width: 100%;
+            height: 300px; /* Fixed height for hero banner */
+            overflow: hidden;
+            background-color: #fff; /* Added white background for hero slideshow */
+        }
+        .testimonial-carousel {
+            height: 150px; /* Adjusted height for testimonials */
+        }
+
+
+        .hero-slide, .testimonial-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            color: #fff;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+            opacity: 0;
+            transform: translateX(100%); /* Start off-screen to the right */
+            transition: opacity 0.7s ease-in-out, transform 0.7s ease-in-out; /* Adjusted transition for smoother look */
+            z-index: 0;
+        }
+
+        .hero-slide.active, .testimonial-slide.active {
+            opacity: 1;
+            transform: translateX(0); /* Move to center */
+            z-index: 1;
+        }
+
+        /* Hero text adjustments for better readability on images */
+        .hero-slide-text {
+            padding: 20px;
+            max-width: 80%; /* Constrain text width */
+            background-color: rgba(0, 0, 0, 0.3); /* Semi-transparent background for text */
+            border-radius: 10px;
+        }
+
+        .hero-slide-text h2 {
+            font-size: 2em; /* Reduced font size for mobile */
+            margin-bottom: 8px; /* Adjusted margin */
+            color: #fff;
+        }
+        .hero-slide-text p {
+            font-size: 1em; /* Reduced font size for mobile */
+            margin-bottom: 15px; /* Adjusted margin */
+            color: #eee;
+        }
+        .hero-slide-button {
+            display: inline-block;
+            background-color: #388E3C; /* Medium green button */
+            color: #fff;
+            padding: 10px 20px; /* Adjusted padding */
+            border-radius: 20px; /* Adjusted border-radius */
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9em; /* Reduced font size */
+            transition: background-color 0.3s ease;
+        }
+        .hero-slide-button:hover {
+            background-color: #4CAF50;
+        }
+
+
+        /* About Us */
+        .about-us p {
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+            font-size: 0.95em; /* Adjusted font size */
+        }
+
+        /* Categories Section - REMOVED AS REQUESTED */
+
+        /* Bestsellers Section (updated from Hover Boards) */
+        .best-seller-list {
+            display: flex;
+            overflow-x: auto; /* Enable horizontal scrolling if cards exceed width */
+            padding-bottom: 15px;
+            gap: 15px; /* Reduced gap */
+            justify-content: flex-start; /* Align items to the start */
+            -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+            scrollbar-width: none; /* Hide scrollbar for Firefox */
+        }
+        .best-seller-list::-webkit-scrollbar {
+            display: none; /* Hide scrollbar for Chrome, Safari, Edge */
+        }
+        .best-seller-card {
+            flex: 0 0 auto; /* Prevent cards from shrinking */
+            width: 150px; /* Slightly reduced fixed width for each card */
+            background-color: #f0fdf0;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            padding: 10px; /* Reduced padding */
+            text-align: center;
+            transition: transform 0.3s ease;
+            outline: none; /* Remove default focus outline */
+        }
+        .best-seller-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+        }
+        .best-seller-card:focus {
+            outline: none; /* Remove focus outline on keyboard focus */
+            box-shadow: none; /* Remove any box shadow on focus */
+        }
+        .best-seller-card img {
+            width: 100px; /* Adjusted size for product images */
+            height: 100px;
+            object-fit: contain; /* Ensure full product is visible */
+            border-radius: 5px;
+            margin-bottom: 8px; /* Adjusted margin */
+        }
+        .best-seller-card h3 {
+            font-size: 0.95em; /* Slightly smaller font size */
+            margin: 5px 0;
+            color: #1B5E20;
+        }
+        .best-seller-card p {
+            font-size: 0.8em; /* Smaller font size */
+            color: #666;
+            margin-bottom: 8px;
+        }
+        .best-seller-card .price {
+            font-weight: bold;
+            color: #2E7D32;
+            font-size: 1em; /* Slightly smaller price font */
+            margin-top: 5px;
+        }
+        .best-seller-card .view-button {
+            display: block;
+            background-color: #2E7D32;
+            color: #fff;
+            padding: 7px 12px; /* Adjusted padding */
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 0.8em; /* Smaller font size */
+            transition: background-color 0.3s ease;
+            outline: none; /* Remove default focus outline */
+            margin-top: 10px; /* Add margin above button */
+        }
+        .best-seller-card .view-button:hover {
+            background-color: #4CAF50;
+        }
+        .best-seller-card .view-button:focus {
+            outline: none; /* Remove focus outline on keyboard focus */
+            box-shadow: none; /* Remove any box shadow on focus */
+        }
+        .best-seller-card, .best-seller-card .view-button {
+            -webkit-tap-highlight-color: transparent; /* Remove blue tap highlight on mobile */
+        }
+        .nav-menu .nav-item {
+            outline: none; /* Remove default focus outline */
+            -webkit-tap-highlight-color: transparent; /* Remove blue tap highlight on mobile */
+        }
+        .nav-menu .nav-item:focus {
+            outline: none; /* Remove focus outline on keyboard focus */
+            box-shadow: none; /* Remove any box shadow on focus */
+        }
+
+        /* Value Proposition */
+        .value-prop-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px; /* Reduced gap */
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .value-prop-item {
+            flex: 1 1 calc(50% - 15px); /* Two items per row on small screens */
+            max-width: calc(50% - 15px); /* Explicit max-width for two columns */
+            background-color: #fdfdf0;
+            border-radius: 10px;
+            padding: 15px; /* Reduced padding */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            box-sizing: border-box; /* Include padding in width */
+        }
+        .value-prop-item .icon {
+            font-size: 2em; /* Slightly smaller icon size */
+            color: #2E7D32;
+            margin-bottom: 8px; /* Adjusted margin */
+        }
+        .value-prop-item h3 {
+            font-size: 1em; /* Slightly smaller font size */
+            margin-top: 0;
+            color: #1B5E20;
+        }
+        .value-prop-item p {
+            font-size: 0.85em; /* Smaller font size */
+        }
+
+        /* Testimonials */
+        .testimonial-carousel {
+            /* Styles already defined above, now for general slides */
+            max-width: 800px; /* Restrict width */
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+            padding: 20px 0;
+            height: 150px; /* Ensure carousel has height for absolute positioning */
+            box-sizing: border-box; /* Added to include padding in width */
+        }
+        .testimonial-slide {
+            text-align: center;
+            padding: 0 20px;
+            box-sizing: border-box; /* Added to include padding in width */
+        }
+        .testimonial-slide p {
+            font-style: italic;
+            font-size: 1em; /* Adjusted font size */
+            color: #555;
+        }
+        .testimonial-slide .author {
+            font-weight: bold;
+            margin-top: 8px; /* Adjusted margin */
+            color: #1B5E20;
+        }
+
+        /* Newsletter CTA - REMOVED AS REQUESTED */
+
+        /* Marquee specific styling */
+        marquee {
+            padding: 8px 0; /* Reduced padding */
+            background-color: #f0f0f0;
+            border-bottom: 1px solid #e0e0e0;
+            margin-bottom: 15px; /* Reduced margin */
+            font-size: 0.85em; /* Slightly smaller font size */
+        }
+
+        /* Header image adjustment - Made bigger as requested */
+        header img {
+            width: 150px; /* Removed !important */
+            height: 150px; /* Removed !important */
+            margin-top: 20px; /* Removed !important */
+        }
+
+
+        /* Responsive adjustments for very small screens (e.g., less than 360px wide) */
+        @media (max-width: 360px) {
+            section {
+                padding: 20px 15px; /* Reduce overall section padding */
+            }
+            .hero-slide-text h2 {
+                font-size: 1.5em;
+            }
+            .hero-slide-text p {
+                font-size: 0.9em;
+            }
+            .hero-slide-button {
+                padding: 10px 20px;
+                font-size: 0.8em;
+            }
+            .best-seller-card {
+                width: 130px; /* Even smaller width for bestsellers if needed */
+            }
+            .value-prop-item {
+                flex: 1 1 100%; /* Stack value propositions */
+                max-width: 100%;
+            }
+        }
+
+        /* Adjustments for larger mobile/small tablet screens (e.g., 601px to 900px) */
+        @media (min-width: 601px) and (max-width: 900px) {
+            .best-seller-card {
+                width: 180px;
+            }
+            .value-prop-item {
+                flex: 1 1 calc(33.33% - 20px); /* Three items per row */
+                max-width: calc(33.33% - 20px);
+            }
+        }
+    </style>
 </head>
-<body bgcolor = "red" align = "center">
-<img src = "image.png" hight = 200 width = 300>
+<body>
+
+    <header>
+        <center><img src="https://raw.githubusercontent.com/notamitgamer/joyguru-test/refs/heads/main/home_icon.png" alt="Home Icon" style="width: 200px; height: 200px; margin-top: 20px;" /></center>
+        <marquee style="color: #388238;" loop="infinite">Currently, as we are in our initial phase, Cash on Delivery is the only available payment method.</marquee>
+    </header>
+
+    <section class="hero">
+        <div class="hero-slideshow" id="hero-slideshow">
+            <div class="hero-slide active" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('data:image/jpeg;base64,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');">
+                <div class="hero-slide-text">
+                    <h2>Making Meals Memorable</h2>
+                    <p>Discover premium utensils for every culinary creation.</p>
+                    <a href="product.html" class="hero-slide-button">Shop Collections</a>
+                </div>
+            </div>
+            <div class="hero-slide" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjbZsThy1It2_D87kMix09zqRsUWUtDRQHLA&s');">
+                <div class="hero-slide-text">
+                    <h2>Limited Time Offer!</h2>
+                    <p>Get 30% off all Bakeware essentials this week.</p>
+                    <a href="product.html" class="hero-slide-button">View Deal</a>
+                </div>
+            </div>
+            <div class="hero-slide" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('data:image/jpeg;base64,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');">
+                <div class="hero-slide-text">
+                    <h2>New Arrivals!</h2>
+                    <p>Innovate your kitchen with our latest tools.</p>
+                    <a href="product.html" class="hero-slide-button">Explore What's New</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about-us">
+        <h2>Our Passion for Culinary Excellence</h2>
+        <p>At Joyguru Basanalay, we believe that the right tools can transform cooking from a chore into a joyous experience. We handpick every utensil for its quality, durability, and ergonomic design, ensuring you have everything you need to create memorable meals.</p>
+    </section>
+
+    <section class="best-sellers">
+        <h2>Our Bestselling Utensils</h2>
+        <div class="best-seller-list">
+            <div class="best-seller-card">
+                <img src="https://placehold.co/120x120/CCFFCC/1B5E20?text=Chef+Knife" alt="Premium Chef Knife" />
+                <h3>Premium Chef Knife</h3>
+                <p>Effortless precision in every cut.</p>
+                <span class="price">₹1299</span>
+                <a href="#" class="view-button">View Product</a>
+            </div>
+            <div class="best-seller-card">
+                <img src="https://placehold.co/120x120/CCFFCC/1B5E20?text=Silicone+Spatula" alt="Silicone Spatula Set" />
+                <h3>Silicone Spatula Set</h3>
+                <p>Heat-resistant & non-stick friendly.</p>
+                <span class="price">₹499</span>
+                <a href="#" class="view-button">View Product</a>
+            </div>
+            <div class="best-seller-card">
+                <img src="https://placehold.co/120x120/CCFFCC/1B5E20?text=Stainless+Steel+Wok" alt="Stainless Steel Wok" />
+                <h3>Stainless Steel Wok</h3>
+                <p>Even heating for perfect stir-fries.</p>
+                <span class="price">₹2499</span>
+                <a href="#" class="view-button">View Product</a>
+            </div>
+            <div class="best-seller-card">
+                <img src="https://placehold.co/120x120/CCFFCC/1B5E20?text=Measuring+Cups" alt="Measuring Cup Set" />
+                <h3>Measuring Cup Set</h3>
+                <p>Accurate measurements for baking.</p>
+                <span class="price">₹349</span>
+                <a href="#" class="view-button">View Product</a>
+            </div>
+             <div class="best-seller-card">
+                <img src="https://placehold.co/120x120/CCFFCC/1B5E20?text=Cutting+Board" alt="Bamboo Cutting Board" />
+                <h3>Bamboo Cutting Board</h3>
+                <p>Durable and knife-friendly surface.</p>
+                <span class="price">₹899</span>
+                <a href="#" class="view-button">View Product</a>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        /* Section Headings (applies to 'Shop By Category' heading) */
+        .section-heading {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1B5E20; /* Dark green */
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        /* Categories Section Grid */
+        .categories-grid {
+            display: grid;
+            /* Force 2 columns on larger screens for a 2x4 layout.
+               Each column takes up an equal fraction of the available space. */
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 15px; /* Space between category cards */
+            margin-bottom: 40px; /* Space below the grid */
+        }
+
+        /* Individual Category Card Styling */
+        .category-card {
+            background-color: white;
+            border-radius: 12px; /* Rounded corners for the card */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); /* Soft shadow for depth */
+            text-align: center;
+            padding: 20px 15px;
+            text-decoration: none; /* Remove underline from link */
+            color: #333; /* Default text color */
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effects */
+            display: flex; /* Use flexbox for icon and name alignment */
+            flex-direction: column; /* Stack icon and name vertically */
+            align-items: center; /* Center horizontally */
+            justify-content: center; /* Center vertically */
+            height: 100%; /* Ensure all cards have equal height in the grid row */
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px); /* Lift effect on hover */
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
+        }
+
+        /* Category Icon Styling (SVG icons) */
+        .category-icon {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 10px; /* Space between icon and name */
+            /* Default color is green, but overridden by inline SVG fill/stroke */
+        }
+
+        /* Emoji icons can sometimes be larger, adjust if needed */
+        .category-card .emoji-icon {
+            font-size: 45px; /* Adjust emoji size */
+            line-height: 1; /* Prevent extra line height */
+            margin-bottom: 10px;
+            display: block; /* Ensure it behaves like a block element */
+        }
+
+        /* Category Name Text Styling */
+        .category-name {
+            font-size: 1rem; /* 16px */
+            font-weight: 600;
+            color: #1B5E20; /* Dark green text */
+            line-height: 1.3;
+        }
+
+        /* Responsive Adjustments for Smaller Screens */
+        @media (max-width: 768px) {
+            .categories-grid {
+                /* On tablets and smaller screens, maintain 2 columns but with appropriate min-width */
+                grid-template-columns: repeat(2, 1fr); 
+                gap: 12px; /* Slightly reduced gap */
+            }
+            .category-icon, .category-card .emoji-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 35px; /* Adjust emoji size for smaller screens */
+            }
+            .category-name {
+                font-size: 0.9rem; /* Slightly smaller font on tablets */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .categories-grid {
+                /* On mobile, still maintain 2 columns */
+                grid-template-columns: repeat(2, 1fr); 
+                gap: 10px;
+            }
+            .category-card {
+                padding: 15px 10px; /* Adjusted padding */
+            }
+            .category-icon, .category-card .emoji-icon {
+                width: 35px;
+                height: 35px;
+                font-size: 30px; /* Adjust emoji size for very small screens */
+                margin-bottom: 8px;
+            }
+            .category-name {
+                font-size: 0.85rem; /* Smallest font size for mobile */
+            }
+        }
+    </style>
+
+    <!-- HTML for the Categories Section -->
+    <section class="category-section">
+        <h2 class="section-heading">Shop By Category</h2>
+        <div class="categories-grid" id="categoriesGrid">
+            <!-- Each 'a' tag below represents a category card -->
+            
+            <!-- New Arrivals -->
+            <a href="product.html?category=new_arrivals" class="category-card">
+                <span class="emoji-icon">⭐</span> <!-- Emoji for New -->
+                <span class="category-name">New Arrivals</span>
+            </a>
+
+            <!-- Stainless Steel -->
+            <a href="product.html?category=stainless_steel" class="category-card">
+                <svg xmlns="http://www.w3.org/2000/svg" class="category-icon" viewBox="0 0 24 24" fill="#B0C4DE" stroke="#696969" stroke-width="1.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h2v-6h-2v6zm0-8h2V7h-2v2z"/>
+                </svg>
+                <span class="category-name">Stainless Steel</span>
+            </a>
+
+            <!-- Pooja & Devotional -->
+            <a href="product.html?category=pooja_devotional" class="category-card">
+                <svg xmlns="http://www.w3.org/2000/svg" class="category-icon" viewBox="0 0 24 24" fill="#FFC107" stroke="#FFA000" stroke-width="1.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h1M3 12H2m15.354 3.354l-.707.707M7.346 7.346l-.707-.707m12.728 0l-.707.707M6.636 16.636l-.707.707M12 21.846a9.846 9.846 0 100-19.692 9.846 9.846 0 000 19.692z" />
+                    <circle cx="12" cy="12" r="3" fill="#FFD700" stroke="#DAA520" stroke-width="1.5"/>
+                </svg>
+                <span class="category-name">Pooja & Devotional</span>
+            </a>
+
+            <!-- Traditional Metalware -->
+            <a href="product.html?category=traditional_metalware" class="category-card">
+                <svg xmlns="http://www.w3.org/2000/svg" class="category-icon" viewBox="0 0 24 24" fill="#DAA520" stroke="#B8860B" stroke-width="1.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 2a2 2 0 012 2v2a2 2 0 01-2 2h-0a2 2 0 01-2-2V4a2 2 0 012-2zM9 10a3 3 0 00-3 3v2a3 3 0 003 3h6a3 3 0 003-3v-2a3 3 0 00-3-3H9zm3 10v2M10 22h4"/>
+                </svg>
+                <span class="category-name">Traditional Metalware</span>
+            </a>
+
+            <!-- Aluminum Cookware -->
+            <a href="product.html?category=aluminum_cookware" class="category-card">
+                <svg xmlns="http://www.w3.org/2000/svg" class="category-icon" viewBox="0 0 24 24" fill="#ADD8E6" stroke="#4682B4" stroke-width="1.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 2L4 7v10l8 5 8-5V7l-8-5zM4 7l8 5m0 0l8-5m-8 5v10"/>
+                </svg>
+                <span class="category-name">Aluminum Cookware</span>
+            </a>
+            
+            <!-- Home Appliances -->
+            <a href="product.html?category=home_appliances" class="category-card">
+                <span class="emoji-icon">🔌</span> <!-- Emoji for home appliance/power -->
+                <span class="category-name">Home Appliances</span>
+            </a>
+
+            <!-- Plastic Storage -->
+            <a href="product.html?category=plastic_storage" class="category-card">
+                <span class="emoji-icon">🧺</span> <!-- Emoji for basket/storage -->
+                <span class="category-name">Plastic Storage</span>
+            </a>
+
+            <!-- Kitchen Essentials -->
+            <a href="product.html?category=kitchen_essentials" class="category-card">
+                <span class="emoji-icon">🍴</span> <!-- Emoji for general kitchen utensils -->
+                <span class="category-name">Kitchen Essentials</span>
+            </a>
+        </div>
+    </section>
+
+    <section class="value-proposition">
+        <h2>Why Choose Joyguru Basanalay?</h2>
+        <div class="value-prop-grid">
+            <div class="value-prop-item">
+                <div class="icon">✨</div> <h3>Premium Quality</h3>
+                <p>Crafted from the finest materials for lasting performance.</p>
+            </div>
+            <div class="value-prop-item">
+                <div class="icon">🛠️</div> <h3>Ergonomic Design</h3>
+                <p>Comfortable and efficient tools for every chef.</p>
+            </div>
+            <div class="value-prop-item">
+                <div class="icon">🌍</div>
+                <h3>Sustainable Sourcing</h3>
+                <p>Committed to eco-friendly and responsible practices.</p>
+            </div>
+            <div class="value-prop-item">
+                <div class="icon">⭐</div>
+                <h3>Customer Satisfaction</h3>
+                <p>Your joy in the kitchen is our top priority.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <h2>What Our Customers Say</h2>
+        <div class="testimonial-carousel" id="testimonial-carousel">
+            <div class="testimonial-slide active">
+                <p>"The best chef knife I've ever owned! Makes cooking a delight."</p>
+                <div class="author">- Priya S., Madhyamgram</div>
+            </div>
+            <div class="testimonial-slide" >
+                <p>"Fantastic quality utensils. Joyguru Basanalay truly helps in making meals memorable."</p>
+                <div class="author">- Rohan V., Birati</div>
+            </div>
+            <div class="testimonial-slide" >
+                <p>"Love my new bakeware set. So easy to clean and bakes perfectly every time!"</p>
+                <div class="author">- Aisha K., Habra</div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>© 2025 Joyguru Basanalay. All rights reserved. Contact us: <a href="mailto:krishanukansabanik@gmail.com">krishanukansabanik@gmail.com</a></p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Hero Section Slideshow - rebuilt for reliability
+            const heroSlides = document.querySelectorAll('.hero-slideshow .hero-slide');
+            let currentHeroSlideIndex = 0;
+            const slideCount = heroSlides.length;
+
+            function showHeroSlide(index) {
+                heroSlides.forEach((slide, i) => {
+                    if (i === index) {
+                        slide.classList.add('active');
+                    } else {
+                        slide.classList.remove('active');
+                    }
+                });
+            }
+
+            function nextHeroSlide() {
+                currentHeroSlideIndex = (currentHeroSlideIndex + 1) % slideCount;
+                showHeroSlide(currentHeroSlideIndex);
+            }
+
+            if (slideCount > 0) {
+                showHeroSlide(0);
+                if (slideCount > 1) {
+                    setInterval(nextHeroSlide, 5000);
+                }
+            }
+
+            // Testimonial Carousel
+            const testimonialSlides = document.querySelectorAll('.testimonial-carousel .testimonial-slide');
+            let currentTestimonialSlideIndex = 0;
+            const testimonialCount = testimonialSlides.length;
+
+            function showTestimonialSlide(index) {
+                testimonialSlides.forEach((slide, i) => {
+                    if (i === index) {
+                        slide.classList.add('active');
+                    } else {
+                        slide.classList.remove('active');
+                    }
+                });
+            }
+
+            function nextTestimonialSlide() {
+                currentTestimonialSlideIndex = (currentTestimonialSlideIndex + 1) % testimonialCount;
+                showTestimonialSlide(currentTestimonialSlideIndex);
+            }
+
+            if (testimonialCount > 0) {
+                showTestimonialSlide(0);
+                if (testimonialCount > 1) {
+                    setInterval(nextTestimonialSlide, 4000);
+                }
+            }
+
+            // Network status detection and redirect to no_internet.html when offline
+            function checkNetworkStatus() {
+                if (!navigator.onLine) {
+                    window.location.href = 'no_internet.html';
+                }
+            }
+
+            window.addEventListener('load', checkNetworkStatus);
+            window.addEventListener('online', () => {
+                if (window.location.pathname.endsWith('no_internet.html')) {
+                    window.location.href = 'index.html';
+                }
+            });
+            window.addEventListener('offline', checkNetworkStatus);
+        });
+    </script>
+
+    <nav class="nav-menu">
+        <a href="index.html" class="nav-item" id="nav-shop">
+            <svg xmlns="http://www.w3.org/2000/svg" class="nav-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" >
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 9l9-6 9 6v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 22V12h6v10" />
+            </svg>
+            <span class="nav-label">Shop</span>
+        </a>
+        <a href="product.html" class="nav-item" id="nav-explore">
+            <svg xmlns="http://www.w3.org/2000/svg" class="nav-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" >
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+            <span class="nav-label">Explore</span>
+        </a>
+        <a href="cart.html" class="nav-item" id="nav-cart">
+            <svg xmlns="http://www.w3.org/2000/svg" class="nav-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" >
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4" />
+                <circle cx="7" cy="21" r="1" />
+                <circle cx="17" cy="21" r="1" />
+            </svg>
+            <span class="nav-label">Cart</span>
+        </a>
+        <a href="account.html" class="nav-item" id="nav-account">
+            <svg xmlns="http://www.w3.org/2000/svg" class="nav-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" >
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5.121 17.804A13.937 13.937 0 0112 15c2.5 0 4.847.655 6.879 1.804M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+            <span class="nav-label">Account</span>
+        </a>
+    </nav>
 </body>
 </html>
