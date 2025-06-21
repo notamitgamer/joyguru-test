@@ -1,19 +1,56 @@
-/* General Body & Typography (keep as is) */
+/* Product Detail Page CSS */
+
+/* General Body & Typography */
 body {
     font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     color: #333;
     line-height: 1.6;
     background-color: #f8f9fa;
-    padding-bottom: 120px;
+    /* Adjusted padding-bottom to ensure content doesn't get hidden behind the fixed bar */
+    padding-bottom: 80px; /* This value provides space for the fixed add-to-cart bar */
 }
 
-/* Product Container (keep as is) */
+/* IMPORTANT: Hide the nav menu on this page */
+.nav-menu {
+    display: none !important;
+}
+
+/* Styles for the new and improved Back Button */
+.back-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000; /* Ensures it's above page content */
+    background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent dark background */
+    color: white; /* White icon color */
+    padding: 10px 12px; /* Padding for the button */
+    border-radius: 50%; /* Makes it circular */
+    display: flex; /* Use flex to center the SVG icon */
+    align-items: center;
+    justify-content: center;
+    text-decoration: none; /* Remove underline for links */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    width: 44px; /* Fixed width for circular shape */
+    height: 44px; /* Fixed height for circular shape */
+}
+
+.back-button:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+    transform: scale(1.05); /* Slight zoom effect on hover */
+}
+
+.back-icon {
+    width: 24px; /* Size of the SVG icon */
+    height: 24px;
+    fill: currentColor; /* Makes SVG icon take the 'color' property of its parent */
+}
+
+/* Product Container */
 #product-container {
     max-width: 900px;
     margin: 40px auto;
     padding: 30px;
-    /* background-color: #ffffff; */
-    /* box-shadow: 0 8px 25px rgba(0,0,0,0.1); */
     border-radius: 18px;
     display: flex;
     flex-wrap: wrap;
@@ -21,7 +58,7 @@ body {
     align-items: flex-start;
 }
 
-/* Product Image Carousel (keep as is) */
+/* Product Image Carousel */
 .product-image-carousel {
     flex: 1;
     min-width: 300px;
@@ -38,6 +75,7 @@ body {
     object-fit: contain;
     box-shadow: 0 6px 15px rgba(0,0,0,0.15);
     transition: transform 0.3s ease-in-out;
+    cursor: zoom-in; /* Indicate clickable for zoom feature */
 }
 
 .main-product-image:hover {
@@ -64,7 +102,7 @@ body {
     transform: scale(1.2);
 }
 
-/* Product Information (keep as is) */
+/* Product Information */
 .product-info-row {
     flex: 2;
     min-width: 300px;
@@ -75,7 +113,7 @@ body {
 
 .product-name-weight h1 {
     font-size: 2.5rem;
-    margin-bottom: 2px; /* Reduced from 15px */
+    margin-bottom: 2px;
     color: #1a202c;
     font-weight: 700;
 }
@@ -83,7 +121,7 @@ body {
 .product-info-row p {
     font-size: 1.05rem;
     color: #555;
-    margin: 0px 0; /* Reduced from 8px */
+    margin: 0px 0;
 }
 
 .product-price {
@@ -91,14 +129,14 @@ body {
     font-weight: 800;
     color: #007bff;
     margin-bottom: 3px;
-    margin-top: 3px; /* Reduced from 20px */
+    margin-top: 3px;
 }
 
 .product-info-row h2 {
     font-size: 1.6rem;
     color: #28a745;
-    margin-top: 15px; /* Reduced from 25px */
-    margin-bottom: 1px,0; /* Reduced from 10px */
+    margin-top: 15px;
+    margin-bottom: 1px;
     border-bottom: 2px solid #e9ecef;
     padding-bottom: 5px;
 }
@@ -109,28 +147,27 @@ body {
     margin-bottom: 0;
 }
 
-/* Fixed Add to Cart / Quantity Container - CRITICAL CHANGES HERE */
+/* Fixed Add to Cart / Quantity Container */
 #add-to-cart-container {
     position: fixed;
-    bottom: 60px; /* Above nav-menu */
+    bottom: 0; /* Placed at the very bottom of the viewport */
     left: 0;
-    width: 100%;
+    width: 100vw; /* Full viewport width */
     display: flex;
-    justify-content: center;
+    justify-content: center; /* Centers items horizontally */
     align-items: center;
     gap: 15px;
-    z-index: 10000;
+    z-index: 10000; /* High z-index to stay on top */
     background-color: #ffffff;
-    padding: 15px 20px; /* Added horizontal padding for content */
+    padding: 15px 20px;
     box-shadow: 0 -4px 15px rgba(0,0,0,0.08);
     border-top: 1px solid #eee;
-    /* New: Control flex items directly here */
 }
 
-/* Buttons - CRITICAL CHANGES FOR WIDTH */
+/* Buttons */
 .add-to-basket-btn, .go-to-cart-btn {
-    flex-grow: 1; /* Allow buttons to grow to fill space */
-    max-width: 300px; /* Limit their max width on larger screens for better aesthetics */
+    min-width: 150px; /* Ensure a minimum width */
+    max-width: 300px; /* Still limits maximum width */
     padding: 12px 35px;
     font-size: 1.1rem;
     font-weight: 600;
@@ -139,11 +176,11 @@ body {
     transition: all 0.3s ease;
     text-transform: uppercase;
     letter-spacing: 0.8px;
-    text-align: center; /* Ensure text is centered within growing button */
+    text-align: center;
 }
 
 .add-to-basket-btn {
-    background-color: #28a744; /* Primary green for action button */
+    background-color: #28a744;
     color: white;
     border: none;
     box-shadow: 0 4px 12px rgba(40, 167, 69, 0.4);
@@ -156,7 +193,9 @@ body {
 }
 
 .go-to-cart-btn {
-    background-color: #007bff; /* Blue for 'Go to Cart' - This was your previous request */
+    background-color: #007bff;
+    color: white; /* Ensure text is white for go-to-cart-btn */
+    border: none;
     box-shadow: 0 4px 12px rgba(0, 123, 255, 0.4);
 }
 
@@ -166,36 +205,36 @@ body {
     transform: translateY(-2px);
 }
 
-/* Quantity Controls - CRITICAL CHANGES FOR WIDTH AND THEME */
+/* Quantity Controls */
 #dynamic-quantity-controls {
     display: flex;
     align-items: center;
-    gap: 0; /* Remove gap between sub-elements to make it a single unit */
-    flex-grow: 1; /* Allow the entire control unit to grow */
-    max-width: 300px; /* Match max-width of buttons */
-    justify-content: space-between; /* Distribute space evenly inside */
-    background-color: #f0f8f0; /* Very subtle green tint for the container */
-    border: 1px solid #a0d8a0; /* Greenish border */
-    border-radius: 8px; /* Match button border-radius */
-    overflow: hidden; /* Ensure rounded corners clip internal elements */
+    gap: 0;
+    min-width: 120px; /* Ensure minimum width for controls */
+    max-width: 300px;
+    justify-content: space-between;
+    background-color: #f0f8f0;
+    border: 1px solid #a0d8a0;
+    border-radius: 8px;
+    overflow: hidden;
 }
 
 .quantity-btn {
-    background-color: #e6f7e6; /* Lighter green for buttons */
-    color: #218838; /* Darker green text */
-    border: none; /* Remove individual button borders */
-    padding: 10px 15px; /* Adjust padding for a compact but clickable size */
-    border-radius: 0; /* Remove individual button border-radius */
+    background-color: #e6f7e6;
+    color: #218838;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 0;
     font-size: 1.1rem;
     font-weight: 700;
     user-select: none;
     box-shadow: none;
     transition: background-color 0.2s ease, color 0.2s ease;
-    flex-shrink: 0; /* Prevent buttons from shrinking too much */
+    flex-shrink: 0;
 }
 
 .quantity-btn:first-child {
-    border-top-left-radius: 7px; /* Apply border-radius to outer corners */
+    border-top-left-radius: 7px;
     border-bottom-left-radius: 7px;
 }
 
@@ -204,37 +243,141 @@ body {
     border-bottom-right-radius: 7px;
 }
 
-
 .quantity-btn:hover {
-    background-color: #d1ecd1; /* Darker green tint on hover */
-    color: #1c7430; /* Even darker text on hover */
-    border-color: transparent; /* No border on hover */
+    background-color: #d1ecd1;
+    color: #1c7430;
+    border-color: transparent;
 }
 
 #quantity-value {
-    min-width: 40px; /* Give more space for the number */
+    min-width: 40px;
     text-align: center;
-    font-weight: 800; /* Make the number very bold */
-    font-size: 1.4rem; /* Larger quantity value */
-    color: #1a202c; /* Dark, prominent color for the number */
+    font-weight: 800;
+    font-size: 1.4rem;
+    color: #1a202c;
     user-select: none;
-    flex-grow: 1; /* Allow number to grow and fill space */
+    flex-grow: 1; /* Allow the quantity value to grow */
 }
 
 
-/* Loading Screen (keep as is) */
+/* Loading Screen */
 #loading-screen {
-    background-color: rgba(255, 255, 255, 0.9);
+    display: none; /* Hidden by default, show it when needed with JavaScript */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
+    z-index: 10000; /* Ensure it's on top of other content */
+    display: flex; /* Use flexbox for centering content */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
 }
 
 #loading-spinner {
-    border: 6px solid rgba(0, 0, 0, 0.1);
-    border-top: 6px solid #28a745;
-    width: 60px;
-    height: 60px;
+    border: 6px solid rgba(0, 0, 0, 0.1); /* Light grey border for the spinner background */
+    border-top: 6px solid #28a745; /* Green top border for the spinning effect */
+    border-radius: 50%; /* Make it a circle */
+    width: 60px; /* Adjusted size */
+    height: 60px; /* Adjusted size */
+    animation: spin 1s linear infinite; /* Apply the spinning animation */
 }
 
-/* Responsive Adjustments - CRITICAL FOR MOBILE */
+/* Keyframe animation for the spinner */
+@keyframes spin {
+    0% { transform: rotate(0deg); } /* Start at 0 degrees rotation */
+    100% { transform: rotate(360deg); } /* End at 360 degrees rotation, creating a continuous spin */
+}
+
+
+/* Fullscreen Photo Overlay Styles */
+#fullscreen-photo-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.95); /* Very dark, almost black background */
+    z-index: 100000; /* Extremely high z-index to be on top of everything */
+    display: flex;
+    flex-direction: column; /* Stack header and content vertically */
+    justify-content: center; /* Center content vertically */
+    align-items: center; /* Center content horizontally */
+    overflow: hidden; /* Prevent body scroll when active */
+    backdrop-filter: blur(5px); /* Optional: blur background content */
+    -webkit-backdrop-filter: blur(5px); /* For Safari */
+}
+
+.overlay-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Slightly transparent header background */
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: center; /* Center the close button */
+    align-items: center;
+    z-index: 100001; /* Above the overlay content */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Hide product name and price in fullscreen header */
+#fullscreen-product-name,
+#fullscreen-product-price {
+    display: none;
+}
+
+#fullscreen-close-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2.5rem;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0 10px;
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+}
+
+#fullscreen-close-btn:hover {
+    transform: scale(1.1);
+}
+
+.overlay-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: auto; /* Allows scrolling if image is larger than viewport after zoom */
+    position: relative; /* For zoom positioning */
+}
+
+#fullscreen-photo {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* Ensures image fits within its container initially */
+    cursor: zoom-in; /* Default cursor for zoom-in */
+    transition: transform 0.3s ease-in-out; /* Smooth transition for zoom */
+    touch-action: pan-zoom; /* Enable native pinch-to-zoom and pan on touch devices */
+}
+
+#fullscreen-photo.zoomed {
+    transform: scale(2); /* Zoom in by 200% */
+    cursor: zoom-out; /* Cursor changes to zoom-out when zoomed */
+    object-fit: fill; /* Allow image to fill its container when zoomed */
+}
+
+/* Ensure body doesn't scroll when overlay is active */
+body.no-scroll {
+    overflow: hidden;
+}
+
+
+/* Responsive Adjustments */
 @media (max-width: 768px) {
     #product-container {
         flex-direction: column;
@@ -263,16 +406,19 @@ body {
 
     /* For mobile, stack buttons/controls */
     #add-to-cart-container {
-        flex-direction: column; /* Stack buttons vertically on small screens */
-        gap: 10px; /* Reduced gap when stacked */
+        flex-direction: column; /* Stack vertically on smaller screens */
+        gap: 10px;
         padding: 10px;
+        bottom: 0;
+        width: 96vw;
     }
 
     .add-to-basket-btn,
     .go-to-cart-btn,
     #dynamic-quantity-controls {
-        width: 90%; /* Take up most of the width */
-        max-width: 400px; /* Prevent them from becoming too wide on slightly larger mobiles */
+        width: 90%; /* Fill 90% of the container width */
+        max-width: 400px; /* Still limit max width */
+        min-width: unset; /* Remove min-width on mobile to allow shrinking */
     }
 
     /* Adjust padding for stacked buttons */
@@ -283,13 +429,35 @@ body {
 
     /* Quantity button and value adjustments for mobile */
     .quantity-btn {
-        padding: 8px 12px; /* Slightly adjusted padding for mobile */
+        padding: 8px 12px;
         font-size: 1rem;
     }
 
     #quantity-value {
         font-size: 1.2rem;
         min-width: 35px;
+    }
+
+    /* Back button adjustments for smaller screens */
+    .back-button {
+        top: 15px;
+        left: 15px;
+        padding: 8px 10px;
+        width: 40px;
+        height: 40px;
+    }
+    .back-icon {
+        width: 20px;
+        height: 20px;
+    }
+
+    /* Fullscreen Overlay Mobile Adjustments */
+    .overlay-header {
+        padding: 10px 15px;
+    }
+
+    #fullscreen-close-btn {
+        font-size: 2rem;
     }
 }
 
@@ -298,6 +466,6 @@ body {
     .add-to-basket-btn,
     .go-to-cart-btn,
     #dynamic-quantity-controls {
-        width: calc(100% - 40px); /* Fill width minus container padding */
+        width: calc(100% - 40px); /* Account for the 20px padding on each side of container */
     }
 }
