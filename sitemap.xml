@@ -4,8 +4,6 @@
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
-
 
 <url>
   <loc>https://joygurubasanalay.shop/</loc>
@@ -14,11 +12,6 @@
 </url>
 <url>
   <loc>https://joygurubasanalay.shop/product.html</loc>
-  <lastmod>2025-06-19T14:19:28+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://joygurubasanalay.shop/index.html</loc>
   <lastmod>2025-06-19T14:19:28+00:00</lastmod>
   <priority>0.80</priority>
 </url>
