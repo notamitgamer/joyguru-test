@@ -211,7 +211,7 @@
       if (!navigator.onLine) {
         // Store current page URL before redirecting
         sessionStorage.setItem('originalPage', window.location.href);
-        window.location.href = 'no_internet.html';
+        window.location.href = '/no_internet';
       }
     }
     window.addEventListener('load', checkNetworkStatus);
