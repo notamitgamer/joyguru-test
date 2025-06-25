@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Product Detail - Joyguru Basanalay</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="nav-menu.css" />
+  <link rel="stylesheet" href="product-detail-styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="canonical" href="https://joygurubasanalay.shop/product-detail.html" />
+</head>
+<body>
+    <a href="javascript:history.back()" class="back-button" aria-label="Back Button">
+        <svg class="back-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path fill-rule="evenodd" d="M11.03 2.22a.75.75 0 0 1 0 1.06L4.56 11.25h14.89a.75.75 0 0 1 0 1.5H4.56l6.47 7.97a.75.75 0 1 1-1.06 1.06l-7.75-9.5a.75.75 0 0 1 0-1.06l7.75-9.5a.75 0 0 1 1.06 0Z" clip-rule="evenodd" />
+        </svg>
+    </a>
+
+    <div id="add-to-cart-container">
+        <button id="addToCartBtn" class="add-to-basket-btn">Add To Cart</button>
+
+        <div id="dynamic-quantity-controls" style="display: none; align-items: center; gap: 10px;">
+            <button id="decrease-btn" class="quantity-btn">-</button>
+            <span id="quantity-value" style="min-width: 24px; text-align: center; font-weight: bold;">1</span>
+            <button id="increase-btn" class="quantity-btn">+</button>
+        </div>
+        <button id="goToCartBtn" class="add-to-basket-btn go-to-cart-btn" style="display: none;">Go to Cart</button>
+    </div>
+
+    <main class="product-detail">
+        <div id="product-container">
+            </div>
+    </main>
+
+    <div id="loading-screen">
+        <div id="loading-spinner"></div>
+    </div>
+
+    <script src="product-detail.js"></script>
+    <script>
+        function checkNetworkStatus() {
+            if (!navigator.onLine) {
+                // Store current page URL before redirecting
+                sessionStorage.setItem('originalPage', window.location.href);
+                window.location.href = 'no_internet.html';
+            }
+        }
+        window.addEventListener('load', checkNetworkStatus);
+        window.addEventListener('offline', checkNetworkStatus);
+    </script>
+
+    <div id="fullscreen-photo-overlay" style="display:none;">
+        <div class="overlay-header">
+            <span id="fullscreen-product-name"></span>
+            <span id="fullscreen-product-price"></span>
+            <button id="fullscreen-close-btn" aria-label="Close Fullscreen View">&times;</button>
+        </div>
+        <div class="overlay-content">
+            <img id="fullscreen-photo" src="" alt="Full Screen Product Photo" />
+        </div>
+    </div>
+</body>
+</html>
