@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Highlight active nav item based on current page URL
   const navItems = document.querySelectorAll('.nav-item');
   const currentPath = window.location.pathname.split('/').pop();
-
+  // what the hack
   navItems.forEach(item => {
     const href = item.getAttribute('href');
     if (href === currentPath || (href === 'https://joygurubasanalay.shop' && (currentPath === '' || currentPath === '/'))) {
