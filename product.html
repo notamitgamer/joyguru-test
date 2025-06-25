@@ -132,7 +132,7 @@
           const productCard = document.createElement('div');
           productCard.className = 'product-card';
           productCard.innerHTML = `
-            <a href="/product_details/?id=${product.id}" class="product-link">
+            <a href="/product-detail?id=${product.id}" class="product-link">
               <img src="${Array.isArray(product.images) ? product.images[0] : product.images}" alt="${product.name}" class="product-image" />
               <div class="product-info">
                 <h3 class="product-name">${product.name}</h3>
