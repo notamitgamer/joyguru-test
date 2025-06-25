@@ -12,20 +12,20 @@
 <body>
   
     <nav class="nav-menu">
-      <a href="index.html" class="nav-item" id="nav-shop">
+      <a href="/index" class="nav-item" id="nav-shop">
         <svg xmlns="http://www.w3.org/2000/svg" class="nav-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" >
           <path stroke-linecap="round" stroke-linejoin="round" d="M3 9l9-6 9 6v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
           <path stroke-linecap="round" stroke-linejoin="round" d="M9 22V12h6v10" />
         </svg>
-        <span class="nav-label">Shop</span>
+        <span class="nav-label">Home</span>
       </a>
-      <a href="product.html" class="nav-item" id="nav-explore">
+      <a href="/product" class="nav-item" id="nav-explore">
         <svg xmlns="http://www.w3.org/2000/svg" class="nav-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" >
           <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
         </svg>
         <span class="nav-label">Explore</span>
       </a>
-      <a href="cart.html" class="nav-item" id="nav-cart">
+      <a href="/cart" class="nav-item" id="nav-cart">
         <svg xmlns="http://www.w3.org/2000/svg" class="nav-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" >
           <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4" />
           <circle cx="7" cy="21" r="1" />
@@ -33,7 +33,7 @@
         </svg>
         <span class="nav-label">Cart</span>
       </a>
-      <a href="account.html" class="nav-item" id="nav-account">
+      <a href="/account" class="nav-item" id="nav-account">
         <svg xmlns="http://www.w3.org/2000/svg" class="nav-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" >
           <path stroke-linecap="round" stroke-linejoin="round" d="M5.121 17.804A13.937 13.937 0 0112 15c2.5 0 4.847.655 6.879 1.804M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
         </svg>
@@ -87,9 +87,9 @@
             <span class="value" id="total-cost"></span>
           </div>
           <p class="terms-text">
-            By placing an order you agree to our <a href="terms.html" class="terms-link">Terms And Conditions</a>
+            By placing an order you agree to our <a href="/terms" class="terms-link">Terms And Conditions</a>
           </p>
-          <a href='details.html'><button id="place-order" class="place-order-btn">Place Order</button></a>
+          <a href='/details'><button id="place-order" class="place-order-btn">Place Order</button></a>
         </div>
       </div>
     </div>
@@ -192,7 +192,7 @@
       if (!navigator.onLine) {
         // Store current page URL before redirecting
         sessionStorage.setItem('originalPage', window.location.href);
-        window.location.href = 'no_internet.html';
+        window.location.href = '/no_internet';
       }
     }
     window.addEventListener('load', checkNetworkStatus);
