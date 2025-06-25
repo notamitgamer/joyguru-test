@@ -241,7 +241,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     goToCartBtn.addEventListener('click', () => {
-        window.location.href = 'cart.html';
+        window.location.href = '/cart';
     });
 
     // --- Initial Page Load Logic ---
