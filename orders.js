@@ -71,6 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
           formattedDate = rawDate;
         }
       }
+      //------order product details---------
       orderDate.textContent = `Order Date: ${formattedDate}`;
       orderDate.style.gridColumn = '1 / 2';
       orderDate.style.gridRow = '1 / 2';
