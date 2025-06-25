@@ -144,13 +144,13 @@ document.addEventListener('DOMContentLoaded', () => {
       const loginToken = localStorage.getItem('loginToken');
       if (!loginToken) {
         // Not logged in, redirect to login page
-        window.location.href = 'login.html';
+        window.location.href = 'https://joygurubasanalay.shop';
       } else {
         // Logged in, get user email and redirect to details.html with email as query param
         const userEmail = localStorage.getItem('userEmail') || '';
         // Store email in localStorage for details.html to read
         localStorage.setItem('prefillEmail', userEmail);
-        window.location.href = 'details.html';
+        window.location.href = '/details';
       }
     });
   }
