@@ -131,7 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Add event listeners for buttons
         
         document.getElementById('track-order-btn').onclick = () => {
-          window.location.href = 'index.html';
+          window.location.href = 'https://joygurubasanalay.shop';
         };
       })
       .catch(() => {
