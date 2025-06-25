@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   navItems.forEach(item => {
     const href = item.getAttribute('href');
-    if (href === currentPath || (href === 'index.html' && (currentPath === '' || currentPath === '/'))) {
+    if (href === currentPath || (href === 'https://joygurubasanalay.shop' && (currentPath === '' || currentPath === '/'))) {
       item.classList.add('active');
     } else {
       item.classList.remove('active');
@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const token = localStorage.getItem('loginToken');
       if (!token) {
         e.preventDefault();
-        window.location.href = 'login.html';
+        window.location.href = '/login';
       }
     });
   }
