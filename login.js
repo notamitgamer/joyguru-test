@@ -79,7 +79,7 @@ verifyOtpBtn.addEventListener('click', () => {
         localStorage.setItem('userEmail', email); // Store email in localStorage
         disableForm();
         // Redirect to appropriate page after successful login
-        const redirectUrl = getQueryParam('redirect') || 'account.html';
+        const redirectUrl = getQueryParam('redirect') || '/account';
         alert('Please update your profile in the account page.');
         window.location.href = redirectUrl;
       } else {
