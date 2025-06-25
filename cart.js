@@ -144,7 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const loginToken = localStorage.getItem('loginToken');
       if (!loginToken) {
         // Not logged in, redirect to login page
-        window.location.href = 'https://joygurubasanalay.shop';
+        window.location.href = '/login';
       } else {
         // Logged in, get user email and redirect to details.html with email as query param
         const userEmail = localStorage.getItem('userEmail') || '';
