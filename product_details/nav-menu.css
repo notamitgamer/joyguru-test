@@ -1,0 +1,86 @@
+/* Styles for nav menu with icons */
+.nav-menu {
+  display: flex;
+  justify-content: space-between;
+  background-color: #fff;
+  padding: 10px 15px;
+  box-shadow: 0 -1px 5px rgba(0,0,0,0.1);
+  position: fixed;
+  bottom: 0;
+  width: 95vw;
+  max-width: 100%;
+  left: 0;
+  margin: 0 auto;
+  z-index: 1000;
+  border-top-left-radius: 12px;  /* Rounded corners added here */
+  border-top-right-radius: 12px; /* Rounded corners added here */
+  overflow: hidden;              /* added to contain the rounded corners of children */
+}
+
+.nav-item {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #000;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+  padding: 5px 0;
+  max-width: 80px;
+  box-sizing: border-box;
+}
+
+.nav-item:first-child {
+  border-bottom-left-radius: 12px;
+}
+.nav-item:last-child{
+  border-bottom-right-radius: 12px;
+}
+
+.nav-icon {
+  width: 24px;
+  height: 24px;
+  stroke: #000;
+  transition: stroke 0.3s ease, filter 0.3s ease;
+}
+
+.nav-label {
+  margin-top: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  text-align: center;
+}
+
+/* Glow effect for active nav item */
+.nav-item.active,
+.nav-item.active .nav-icon {
+  color: #2e7d32;
+  stroke: #2e7d32;
+  filter: drop-shadow(0 0 6px #2e7d32);
+}
+
+/* Remove default focus outline but keep accessibility */
+.nav-item:focus {
+  outline: 2px solid #2e7d32;
+  outline-offset: 2px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .nav-menu {
+    padding: 8px 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+  .nav-item {
+    max-width: 60px;
+    font-size: 0.8rem;
+  }
+  .nav-icon {
+    width: 20px;
+    height: 20px;
+  }
+}
